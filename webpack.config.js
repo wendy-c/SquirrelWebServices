@@ -1,24 +1,22 @@
-var webpack = require('webpack');
-var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: __dirname + '/client/app/index.html',
+  filename: 'index.html',
+  inject: 'body'
+});
 
-var BUILD_DIR = path.resolve(__dirname, 'client/public');
-var APP_DIR = path.resolve(__dirname, 'client/app');
-
-var config = {
-  entry: APP_DIR + '/index.jsx',
+module.exports = {
+  entry: [
+    './client/app/index.js'
+  ],
   output: {
-    path: BUILD_DIR,
-    filename: 'bundle.js'
+    path: __dirname + '/public',
+    filename: "bundle.js"
   },
   module: {
     loaders: [
-      {
-        test: /\.jsx?/,
-        include: APP_DIR,
-        loader: 'babel'
-      }
+      {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"}
     ]
-  }
+  },
+  plugins: [HTMLWebpackPluginConfig]
 };
-
-module.exports = config;
