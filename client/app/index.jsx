@@ -1,12 +1,29 @@
 import React from 'react';
 import {render} from 'react-dom';
 
+require("materialize-css");
+
 class App extends React.Component {
-  render () {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+  render() {
     return (
       <div>
-      <p> <a href="/auth/facebook">Login with Facebook</a></p>
-      <p><a href="/auth/twitter">Sign in with Twitter</a></p>
+      <nav>
+        <div className="nav-wrapper">
+        </div>
+      </nav>
+        <div className="row center">
+          <a href="/auth/facebook" id="download-button" className="btn-large waves-effect waves-light blue lighten-1">Log in with Facebook</a>
+        </div>
+        <div className="row center">
+          <a href="/auth/twitter" id="download-button" className="btn-large waves-effect waves-light teal lighten-1">Log in with Twitter</a>
+        </div>
       </div>
       );
   }
