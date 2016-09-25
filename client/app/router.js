@@ -5,12 +5,15 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 // import Components
 import LoginContainer from './login/LoginContainer';
 import HomeContainer from './home/HomeContainer';
+import UserInboxContainer from './home/userInbox/userInboxContainer';
 
 var routes = (
   <Router history={hashHistory}>
     <Route path='/'>
-    <IndexRoute component={LoginContainer}/>
-    <Route path='home' component={HomeContainer}/>
+      <IndexRoute component={LoginContainer}/>
+      <Route path='home' component={HomeContainer}>
+      
+      </Route>
     </Route>
   </Router>
   );
