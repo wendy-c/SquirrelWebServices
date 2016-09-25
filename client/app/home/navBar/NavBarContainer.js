@@ -10,7 +10,14 @@ class NavBarContainer extends React.Component {
   }
   render() {
     return (
-    <NavBarPresentational />
+    <div id='navbar'>
+      <div className='navbar'>
+        <NavBarPresentational />
+      </div>
+      <div className='navbarchildren'>
+        {this.props.children}
+      </div>
+    </div>
     );
   }
 }

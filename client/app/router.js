@@ -6,14 +6,13 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import LoginContainer from './login/LoginContainer';
 import HomeContainer from './home/HomeContainer';
 import UserInboxContainer from './home/userInbox/userInboxContainer';
+import NavBarContainer from './home/navBar/NavBarContainer';
 
 var routes = (
   <Router history={hashHistory}>
-    <Route path='/'>
+    <Route path='/' component={NavBarContainer}>
       <IndexRoute component={LoginContainer}/>
-      <Route path='home' component={HomeContainer}>
-      
-      </Route>
+      <Route path='home' component={HomeContainer}/>
     </Route>
   </Router>
   );
