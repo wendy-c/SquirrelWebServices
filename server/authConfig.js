@@ -3,19 +3,20 @@ var request = require('request');
 var rp = require('request-promise');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
-
-var options = function(id, name){
+//options for request-promise http request
+var options = function(id, name, avatar){
   return {
     method: 'POST',
     uri: 'http://localhost:8888/login/' + id,
     body: {
         userID: id,
         name: name || undefined,
+        avatar: avatar || undefined,
     },
     json: true // Automatically stringifies the body to JSON
   }
 }
-
+//profile fields to request from facebook
 var FBprofileFields = [
     'id',
     'displayName',
@@ -36,8 +37,8 @@ var FBprofileFields = [
     'is_verified'
   ];
 
+//passport configuration
 module.exports.passportConfig = function(passport){
-
   passport.use(new FacebookStrategy({
     clientID: APIKeys.keys.facebook.key,
     clientSecret: APIKeys.keys.facebook.secret,
@@ -45,7 +46,8 @@ module.exports.passportConfig = function(passport){
     profileFields: FBprofileFields,
   },
     function(accessToken, refreshToken, profile, done) {
-      var apiFields = options(profile.id, profile.displayName)
+      console.log(profile.photos[0].value, 'what is this thing?');
+      var apiFields = options(profile.id, profile.displayName, profile.photos[0].value)
 
       rp(apiFields)
       .then(function (user) {

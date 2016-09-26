@@ -27,7 +27,9 @@ app.use(passport.session());
 
 passportConfig(passport);
 
+//What is this (below) for?
 app.post('/login', passport.authenticate('local'), function(req, res) {
+  console.log(req, 'app.post /login')
   //if this function gets invoked, authentucation was successful
   // `req.user` contains the authenticated user.
   //res.redirect('/links/' + req.user.id);
