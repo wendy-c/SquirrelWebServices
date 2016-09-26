@@ -49,7 +49,7 @@ module.exports.passportConfig = function(passport){
       console.log(profile.photos[0].value, 'what is this thing?');
       var apiFields = options(profile.id, profile.displayName, profile.photos[0].value)
 
-      rp(apiFields)
+      rp(apiFields) //<===== server-side http request
       .then(function (user) {
           console.log(user, 'IS THIS THE DATA');
           done(null, user);
