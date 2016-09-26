@@ -8,6 +8,9 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var APIKeys = require('./config');
+//below are peer dependencies. They will allow you to make server side http requests
+var request = require('request');
+var rp = require('request-promise');
 
 var app = express();
 
@@ -30,14 +33,45 @@ app.use(passport.session());
 passport.use(new FacebookStrategy({
   clientID: APIKeys.keys.facebook.key,
   clientSecret: APIKeys.keys.facebook.secret,
-  callbackURL: 'http://localhost:3010/auth/facebook/callback'
+  callbackURL: 'http://localhost:3010/auth/facebook/callback',
+  profileFields:[
+    'id',
+    'displayName',
+    'first_name',
+    'last_name',
+    'email',
+    'bio',
+    'work',
+    'education',
+    'location',
+    'birthday',
+    'cover',
+    'picture.type(large)',
+    'gender',
+    'interested_in',
+    'link', // FB timeline 
+    'website',
+    'is_verified'
+  ],
 },
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({}, function(err, user) {
-      if (err) {
-        return done(err);
-      }
-      done(null, user);
+    var options = {
+      method: 'POST',
+      uri: 'http://localhost:8888/login/' + profile.id,
+      body: {
+          userID: profile.id,
+          name: profile.displayName,
+      },
+      json: true // Automatically stringifies the body to JSON
+    };
+
+    rp(options)
+    .then(function (user) {
+        console.log(user, 'IS THIS THE DATA');
+        done(null, user);
+    })
+    .catch(function (err) {
+      console.log(err,'could not reach SquirrelDBService');
     });
   }
 ));
@@ -48,6 +82,7 @@ passport.use(new TwitterStrategy({
   callbackURL: 'http://localhost:3010/auth/twitter/callback'
 },
 function(token, tokenSecret, profile, done) {
+  console.log(profile, 'twitter profile?');
   User.findOrCreate({}, function(err, user) {
     if (err) {
       return done(err);
@@ -58,13 +93,28 @@ function(token, tokenSecret, profile, done) {
 
 //user ID is serialized to the session, when a request of the same ID is received it will restore the session
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user.fbid);
 });
-
+//used to check if user session is actuallly a verified user in database! 
 passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
+  var options = {
+    method: 'POST',
+    uri: 'http://localhost:8888/login/' + id,
+    body: {
+        userID: id,
+    },
+    json: true // Automatically stringifies the body to JSON
+  };
+
+  rp(options)
+    .then(function(user){
+      console.log('passport.deserilizeUser', user);
+      done(err, user);
+    })
+    .catch(function(err){
+      console.log('passport.deserilizeUser 2', err);
+    })
+
 });
 
 //app.get('/');
@@ -77,15 +127,15 @@ app.post('/login', passport.authenticate('local'), function(req, res) {
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-app.get('auth/facebook/callback',
+app.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
-    successRedirect: '/',
-    failureRedirect: '/login'
+    successRedirect: 'http://localhost:3010/#/home',
+    failureRedirect: 'http://localhost:3010/'
   }));
 
 app.get('/auth/twitter', passport.authenticate('twitter'));
 
-app.get('auth/twitter/callback',
+app.get('/auth/twitter/callback',
   passport.authenticate('twitter', {
     successRedirect: '/',
     failureRedirect: '/login'
