@@ -8,6 +8,8 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var APIKeys = require('./config');
+var profileFields = require('./authConfig').profileFields;
+var options = require('./authConfig').options;
 //below are peer dependencies. They will allow you to make server side http requests
 var request = require('request');
 var rp = require('request-promise');
@@ -34,38 +36,12 @@ passport.use(new FacebookStrategy({
   clientID: APIKeys.keys.facebook.key,
   clientSecret: APIKeys.keys.facebook.secret,
   callbackURL: 'http://localhost:3010/auth/facebook/callback',
-  profileFields:[
-    'id',
-    'displayName',
-    'first_name',
-    'last_name',
-    'email',
-    'bio',
-    'work',
-    'education',
-    'location',
-    'birthday',
-    'cover',
-    'picture.type(large)',
-    'gender',
-    'interested_in',
-    'link', // FB timeline 
-    'website',
-    'is_verified'
-  ],
+  profileFields: profileFields,
 },
   function(accessToken, refreshToken, profile, done) {
-    var options = {
-      method: 'POST',
-      uri: 'http://localhost:8888/login/' + profile.id,
-      body: {
-          userID: profile.id,
-          name: profile.displayName,
-      },
-      json: true // Automatically stringifies the body to JSON
-    };
+    var apiFields = options(profile.id, profile.displayName)
 
-    rp(options)
+    rp(apiFields)
     .then(function (user) {
         console.log(user, 'IS THIS THE DATA');
         done(null, user);
@@ -97,16 +73,9 @@ passport.serializeUser(function(user, done) {
 });
 //used to check if user session is actuallly a verified user in database! 
 passport.deserializeUser(function(id, done) {
-  var options = {
-    method: 'POST',
-    uri: 'http://localhost:8888/login/' + id,
-    body: {
-        userID: id,
-    },
-    json: true // Automatically stringifies the body to JSON
-  };
+  var apiFields = options(id);
 
-  rp(options)
+  rp(apiFields)
     .then(function(user){
       console.log('passport.deserilizeUser', user);
       done(err, user);
