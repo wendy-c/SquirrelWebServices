@@ -4,7 +4,7 @@ const LoginPresentational = (props) => {
   return (
     <div>
       <nav>
-        <div className="nav-wrapper">
+        <div className="nav-wrapper white">
         </div>
       </nav>
         <div className="row center">

@@ -5,13 +5,16 @@ var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
+var cors = require('cors');
 
 //passport configuration
 var passportConfig = require('./authConfig').passportConfig;
 
 var app = express();
 
+
 app.use(express.static(path.join(__dirname, '../public')));
+app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
