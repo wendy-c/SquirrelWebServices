@@ -1,0 +1,71 @@
+html {
+  height: 100%;
+  margin: 0px;
+}
+
+body {
+  height: 100%;
+  margin: 0px
+}
+
+#app {
+  height: 100%;
+}
+
+#navbar {
+  height: 100%;
+}
+
+.navbar {
+  height: 10%;
+}
+
+.navbarchildren {
+  height: 90%;
+}
+
+.inboxmain {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /*overflow: hidden;*/
+}
+
+.userinbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.userinboxarticles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.friendinbox {
+  /*height:100%;*/
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.loginbuttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article {
+  height: 200px;
+  width: 43%;
+}
+
+.inputfield {
+  display: flex;
+  flex-direction: row;
+}

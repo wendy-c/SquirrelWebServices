@@ -12,6 +12,7 @@ class InputBarContainer extends React.Component {
     }
   }
 
+
   handleInputChange(e) {
     e.preventDefault();
     this.setState({input: e.target.value});
@@ -24,7 +25,7 @@ class InputBarContainer extends React.Component {
     this.setState({input: ''});
     console.log(inputUrl);
     //do some http POST with url
-    axios.put('http://localhost:8888/links/' + hardCodedUserID, {
+    axios.put('http://localhost:8888/links/' + this.props.userId, {
       url: inputUrl
     })
     .then(function(data){
