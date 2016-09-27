@@ -12,19 +12,19 @@ import axios from 'axios';
 const check = true;
 const validate = function(nextState, replace, callback){
   axios.get('/checkAuth')
-  .then(function(user){
+  .then(function(user) {
     console.log(user);
-    if(user.data === "") {
+    if (user.data === '') {
       replace('login');
       callback();
     } else {
       callback();
     }
   })
-  .catch(function(err){
+  .catch(function(err) {
     console.log(err);
     callback(err);
-  })
+  });
 
   // if(check){
   //   replace('login');
@@ -32,7 +32,7 @@ const validate = function(nextState, replace, callback){
   // } else {
   //   // done();
   // }
-}
+};
 
 
 var routes = (

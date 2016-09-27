@@ -11,6 +11,7 @@ class UserInboxContainer extends React.Component {
     };
   }
   render() {
+    console.log('i am in UserInboxContainer===>>>>', this.props)
     //dummy test articles below
     var mappedArticles = [];
     for(var i = 0; i < 8; i++ ){
