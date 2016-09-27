@@ -3,3 +3,4 @@ server/config.js
 client/public/bundle.js
 client/public/bundle.js.map
 .DS_store
+/public
