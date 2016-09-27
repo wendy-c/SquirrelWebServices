@@ -41,7 +41,7 @@ app.get('/checkAuth', function(req, res){
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
-    successRedirect: 'http://localhost:3010/#/home',
+    successRedirect: 'http://localhost:3010/#/',
     failureRedirect: 'http://localhost:3010/'
   }));
 
