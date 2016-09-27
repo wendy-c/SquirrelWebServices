@@ -15,6 +15,6 @@ const LoginPresentational = (props) => {
         </div>
     </div>
     );
-}
+};
 
 export default LoginPresentational;
