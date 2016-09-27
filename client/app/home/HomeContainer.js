@@ -76,7 +76,7 @@ class HomeContainer extends React.Component {
     return (
     <div style={{'height': '100%', 'width': '100%'}}>
       <HomePresentational >
-        <InputBarContainer/>
+        <InputBarContainer userId={this.state.userId}/>
         <div className='row inboxmain'>
           <div className='col s8 grey lighten-5'>
             <Scrollbars style={{ height: 600 }}>
