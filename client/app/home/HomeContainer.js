@@ -50,7 +50,7 @@ class HomeContainer extends React.Component {
 
   getUserArticles() {
     var userArticles = this.state.articles.filter((link) => {
-      return link.owner === this.state.user.fbid;
+      return link.assignee === this.state.user.fbid;
     }).map((item) => {
       return {url: item.url, createdAt: item.createdAt};
     });
@@ -62,7 +62,7 @@ class HomeContainer extends React.Component {
 
   getArticlesFromFriends() {
     var articlesFromFriends = this.state.articles.filter((link) => {
-      return link.owner !== this.state.user.fbid;
+      return link.assignee !== this.state.user.fbid;
     }).map((item) => {
       return {assignee: item.assignee, url: item.url};
     });
