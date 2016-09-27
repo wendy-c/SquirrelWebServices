@@ -86,7 +86,7 @@ module.exports.passportConfig = function(passport){
     rp(apiFields)
       .then(function(user){
         console.log('passport.deserilizeUser', user);
-        done(err, user);
+        done(null, user);
       })
       .catch(function(err){
         console.log('passport.deserilizeUser 2', err);

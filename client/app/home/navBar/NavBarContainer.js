@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import NavBarPresentational from './NavBarPresentational';
+import axios from 'axios';
 
 class NavBarContainer extends React.Component {
   constructor(props) {
@@ -8,6 +9,9 @@ class NavBarContainer extends React.Component {
 
     };
   }
+
+
+
   render() {
     return (
     <div id='navbar'>

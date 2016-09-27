@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
+
 //passport configuration
 var passportConfig = require('./authConfig').passportConfig;
 
@@ -16,9 +17,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({ 
   secret: 'keyboard squirrel',
-  resave: false,
+  resave: true,
   saveUninitialized: true,
-  cookie: { secure: true }
+  // cookie: { secure: true }
 }));
 
 //OAuth configuration
@@ -27,15 +28,13 @@ app.use(passport.session());
 
 passportConfig(passport);
 
-//What is this (below) for?
-app.post('/login', passport.authenticate('local'), function(req, res) {
-  console.log(req, 'app.post /login')
-  //if this function gets invoked, authentucation was successful
-  // `req.user` contains the authenticated user.
-  //res.redirect('/links/' + req.user.id);
-});
-
 app.get('/auth/facebook', passport.authenticate('facebook'));
+
+//check to see req session?
+app.get('/checkAuth', function(req, res){
+  console.log('hello robert', req.user, 'yoloo')
+  res.send(req.user);
+});
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
