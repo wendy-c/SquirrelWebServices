@@ -3,7 +3,10 @@ import React from 'react';
 const FriendInboxPresentational = (props) => {
   return (
     <div className='friendinbox'>
-      <h3>Friend Recommendations</h3>
+      <h5>Recommendations</h5>
+      <div className='userinboxarticles'>
+        {props.children}
+      </div>
     </div>
     );
 }

@@ -10,7 +10,7 @@ class LoginContainer extends React.Component {
     };
   }
 
-  test
+
   render() {
     return (
     <LoginPresentational />

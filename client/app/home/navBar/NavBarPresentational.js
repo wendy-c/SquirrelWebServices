@@ -3,7 +3,7 @@ import React from 'react';
 const NavBarPresentational = (props) => {
   return (
     <div>
-      <h3>Nav Bar Goes Here</h3>
+      <h5>Nav Bar Goes Here</h5>
     </div>
     );
 }

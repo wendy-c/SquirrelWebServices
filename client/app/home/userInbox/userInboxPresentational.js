@@ -4,7 +4,7 @@ import ArticleInfoWindowContainer from '../articleInfoWindow/articleInfoWindowCo
 const UserInboxPresentational = (props) => {
   return (
     <div className='userinbox'>
-      <h3>User Inbox Stuff</h3>
+      <h5>User Inbox Stuff</h5>
       <div className='userinboxarticles'>
         {props.children}
       </div>
