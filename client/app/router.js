@@ -9,11 +9,10 @@ import UserInboxContainer from './home/userInbox/userInboxContainer';
 import NavBarContainer from './home/navBar/NavBarContainer';
 import axios from 'axios';
 
-const check = true;
-const validate = function(nextState, replace, callback){
+const validate = function(nextState, replace, callback) {
   axios.get('/checkAuth')
-  .then(function(user){
-    if(user.data === "") {
+  .then(function(user) {
+    if (user.data === '') {
       replace('login');
       callback();
     } else {
@@ -24,13 +23,6 @@ const validate = function(nextState, replace, callback){
     console.log(err);
     callback(err);
   });
-
-  // if(check){
-  //   replace('login');
-  //   // done();
-  // } else {
-  //   // done();
-  // }
 };
 
 

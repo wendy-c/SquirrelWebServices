@@ -17,33 +17,38 @@ class HomeContainer extends React.Component {
     this.getUserArticles = this.getUserArticles.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     var context = this;
     //get user name and id
+
     axios.get('/checkAuth')
-      .then(function(user) {
-        //console.log(user, 'this is the data in componentWillMount');
+      .then((user) => {
+        console.log('this is the data in componentWillMount get user??>>>>>>>>', user.data);
+        
         context.setState({
           user: user.data,
-          articles: [],
-          userLinks: [],
-          linksFromFriends: []
         });
-      })
-      .then(function(user) {
-        //get user articles
+
+        console.log('where the heck is my user data??>>>>>>>>>>>>>>>>>>>>>>>>>>>>', context.state.user.fbid);
         axios.get('http://wwww.localhost:8888/links/' + context.state.user.fbid)
-          .then(function(links) {
-            console.log('what links am i getting back???????', links);
+          .then((links) => {
             //getting back array of objects links.data = [{assignee: 'FriendsID', categoryId: '', createdAt: '...', id: int, likes: int, owner: 'userID', updatedAt: '...', 'url: 'url', userFbid: ''}, {link2}, {link3}]
             context.setState({
               articles: links.data
             });
           })
-          .then(function(res) {
+          .then((res) => {
+          //get user articles
             context.getUserArticles();
+            //context.getArticlesFromFriends();
+          })
+          .catch((err) => {
+            console.log('There is an err in HomeContainer, it\'s a sad day D=', err);
           });
-        
+
+      })
+      .catch((err) => {
+        console.log('There is an error in HomeContainer getting user, it\'s a sad day D=', err);
       });
 
   }
@@ -54,7 +59,7 @@ class HomeContainer extends React.Component {
     }).map((item) => {
       return {url: item.url, createdAt: item.createdAt};
     });
-    // console.log('i am in getUserArticles===>>>>>', userArticles);
+    console.log('i am in getUserArticles===>>>>>', userArticles);
     this.setState({
       userArticles: userArticles 
     });
@@ -64,7 +69,7 @@ class HomeContainer extends React.Component {
     var articlesFromFriends = this.state.articles.filter((link) => {
       return link.assignee !== this.state.user.fbid;
     }).map((item) => {
-      return {assignee: item.assignee, url: item.url};
+      return {assignee: item.assignee, url: item.url, createdAt: item.createdAt};
     });
     this.setState({
       articlesFromFriends: articlesFromFriends
@@ -72,7 +77,7 @@ class HomeContainer extends React.Component {
   }
 
   render() {
-      //console.log('what is user in componentDidMount', this.state.user);
+      console.log('i am in HomeContainer, what is user>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', this.state.user);
     return (
     <div style={{'height': '100%', 'width': '100%'}}>
       <HomePresentational >
