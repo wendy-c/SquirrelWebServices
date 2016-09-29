@@ -56,7 +56,7 @@ class HomeContainer extends React.Component {
     }).map((item) => {
       return {url: item.url, createdAt: item.createdAt};
     });
-    console.log('i am in getUserArticles===>>>>>', userArticles);
+    // console.log('i am in getUserArticles===>>>>>', userArticles);
     this.setState({
       userArticles: userArticles 
     });

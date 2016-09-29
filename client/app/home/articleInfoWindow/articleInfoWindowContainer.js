@@ -59,10 +59,6 @@ class ArticleInfoWindowContainer extends React.Component {
     }
   }
 
-  // getAssignee() {
-  //   //get Assignee name
-  // }
-
   render() {
     // console.log('i am in ArticleInfoWindowContainer this.state>>>>>>>>>>>>>>>>>>>>>', this.state);
     return (
