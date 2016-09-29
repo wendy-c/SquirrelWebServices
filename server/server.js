@@ -33,7 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passportConfig(passport);
-
+//API ROUTES 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 //check to see req session?
@@ -106,6 +106,13 @@ app.get('/auth/twitter/callback',
     failureRedirect: '/login'
   }));
 
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+
 app.listen('3010', function() {
   console.log('listening on port 3010!');
 });
+
