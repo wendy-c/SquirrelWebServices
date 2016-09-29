@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
-import FriendsPresentational from './friendsPresentational'
+import FriendsListPresentational from './friendsListPresentational'
 
-class FriendsContainer extends React.Component {
+class FriendsListContainer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -19,9 +19,9 @@ class FriendsContainer extends React.Component {
 
   render() {
     return (
-      <FriendsPresentational />
+      <FriendsListPresentational />
       )
   }
 }
 
-export default FriendsContainer
+export default FriendsListContainer
