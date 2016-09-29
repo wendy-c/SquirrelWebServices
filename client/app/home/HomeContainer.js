@@ -23,7 +23,11 @@ class HomeContainer extends React.Component {
     //get user name and id
 
     axios.get('/checkAuth')
+<<<<<<< 2a0e1cdf6b05c236b89a7f5b4172c28f2c9204e7
       .then((user) => {
+=======
+      .then((user) => {        
+>>>>>>> implement logout functionality and navigation button functionality
         context.setState({
           user: user.data,
         });
@@ -47,7 +51,6 @@ class HomeContainer extends React.Component {
       .catch((err) => {
         console.log('There is an error in HomeContainer getting user, it\'s a sad day D=', err);
       });
-
   }
 
   getUserArticles() {

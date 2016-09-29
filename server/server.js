@@ -37,8 +37,7 @@ passportConfig(passport);
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 //check to see req session?
-app.get('/checkAuth', function(req, res) {
-  console.log('hello user info please???=====================>>>>>>', req.user, 'yoloo');
+app.get('/checkAuth', function(req, res){
   res.send(req.user);
 });
 
