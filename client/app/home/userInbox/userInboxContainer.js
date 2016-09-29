@@ -14,6 +14,7 @@ class UserInboxContainer extends React.Component {
 
   componentWillMount() {
     this.sortArticlesByCreatedAt();
+<<<<<<< f90ecc524e45e75c81d95da0443d073b42642b8c
   }
   
   sortArticlesByCreatedAt() {
@@ -54,6 +55,27 @@ class UserInboxContainer extends React.Component {
     // for(var i = 0; i < 8; i++ ){
     //   mappedArticles.push(<ArticleInfoWindowContainer key={i}/>)
     // } 
+=======
+  }
+  
+  sortArticlesByCreatedAt() {
+    var sorted = this.props.articles.sort(function(a, b) {
+      if (a.createdAt < b.createdAt) {
+        return 1;
+      }
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      }
+      return 0;
+    });
+    this.setState({
+      sortedUserArticles: sorted
+    });
+    console.log('these articles are sorted>>>>>>>>', sorted);
+  }
+
+  render() {
+>>>>>>> add he to help parse html string, work on css
 
     var mappedArticles = this.props.articles.map((item, idx) => {
       return (<ArticleInfoWindowContainer key={idx} url={item.url} createdAt={item.createdAt}/>);
