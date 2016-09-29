@@ -9,15 +9,19 @@ class FriendInboxContainer extends React.Component {
 
     };
   }
+
+  //getting this.props.articles
+
+
+
   render() {
-    const articles = [];
-    for(var i = 0; i < 8; i ++){
-      articles.push(<ArticleInfoWindowContainer key={i}/>)
-    }
+    const mappedArticles = this.props.articles.map((item, idx) => {
+      return (<ArticleInfoWindowContainer key={idx} url={item.url} createdAt={item.createdAt} assignee={item.assignee}/>);
+    });
 
     return (
     <FriendInboxPresentational>
-      {articles}
+      {mappedArticles}
     </FriendInboxPresentational>
     );
   }

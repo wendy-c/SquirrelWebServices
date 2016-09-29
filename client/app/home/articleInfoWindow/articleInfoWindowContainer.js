@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import ArticleInfoWindowPresentational from './articleInfoWindowPresentational';
+import ArticleInfoFromFriendPresentational from './articleInfoFromFriendPresentational';
 import he from 'he';
 
 
@@ -9,14 +10,17 @@ class ArticleInfoWindowContainer extends React.Component {
     this.state = {
       title: '',
       img: '',
-      excerpt: ''
+      excerpt: '',
+      isFromFriend: false
     };
     this.getUrlInfo = this.getUrlInfo.bind(this);
+    this.checkIfFromFriend = this.checkIfFromFriend.bind(this);
   }
 
   componentWillMount() {
-
+    console.log('are you getting stuff from friends??>>>>>', this.props);
     this.getUrlInfo(this.props.url);
+    this.checkIfFromFriend();
   }
 
   getUrlInfo(url) {
@@ -30,7 +34,7 @@ class ArticleInfoWindowContainer extends React.Component {
       success: function(data) {
         var parsedData = JSON.parse(data.body);
         var decodedExcerpt = he.decode(parsedData.excerpt);
-        console.log('this is in getUrlInfo====>>>>>', parsedData.excerpt, decodedExcerpt);
+        // console.log('this is in getUrlInfo====>>>>>', parsedData.excerpt, decodedExcerpt);
         context.setState({
           title: parsedData.title,
           image: parsedData.lead_image_url,
@@ -43,11 +47,21 @@ class ArticleInfoWindowContainer extends React.Component {
     });
   }
 
+  checkIfFromFriend() {
+    if (this.props.assignee) {
+      return (<ArticleInfoFromFriendPresentational title={this.state.title} image={this.state.image} excerpt={this.state.excerpt} assignee={this.props.assignee} createdAt={this.props.createdAt} url={this.props.url}/>);
+    } else {
+      return (
+        <ArticleInfoWindowPresentational title={this.state.title} image={this.state.image} excerpt={this.state.excerpt}/>
+        );
+    }
+  }
+
   render() {
-    console.log('i am in ArticleInfoWindowContainer this.state>>>>>>>>>>>>>>>>>>>>>', this.state);
+    // console.log('i am in ArticleInfoWindowContainer this.state>>>>>>>>>>>>>>>>>>>>>', this.state);
     return (
-      <ArticleInfoWindowPresentational title={this.state.title} image={this.state.image} excerpt={this.state.excerpt}/>
-      );
+    <div>{this.checkIfFromFriend()}</div>
+    );
   }
 }
 

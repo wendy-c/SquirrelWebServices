@@ -23,7 +23,6 @@ class HomeContainer extends React.Component {
 
     axios.get('/checkAuth')
       .then((user) => {
-        console.log('this is the data in componentWillMount get user??>>>>>>>>', user.data);
         
         context.setState({
           user: user.data,
@@ -39,7 +38,7 @@ class HomeContainer extends React.Component {
           .then((res) => {
           //get user articles
             context.getUserArticles();
-            //context.getArticlesFromFriends();
+            context.getArticlesFromFriends();
           })
           .catch((err) => {
             console.log('There is an err in HomeContainer, it\'s a sad day D=', err);
@@ -58,7 +57,7 @@ class HomeContainer extends React.Component {
     }).map((item) => {
       return {url: item.url, createdAt: item.createdAt};
     });
-    console.log('i am in getUserArticles===>>>>>', userArticles);
+    // console.log('i am in getUserArticles===>>>>>', userArticles);
     this.setState({
       userArticles: userArticles 
     });
@@ -70,6 +69,7 @@ class HomeContainer extends React.Component {
     }).map((item) => {
       return {assignee: item.assignee, url: item.url, createdAt: item.createdAt};
     });
+    console.log('i am in getArticlesFromFriends>>>>>>>', articlesFromFriends);
     this.setState({
       articlesFromFriends: articlesFromFriends
     });
