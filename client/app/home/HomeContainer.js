@@ -29,7 +29,6 @@ class HomeContainer extends React.Component {
           user: user.data,
         });
 
-        console.log('where the heck is my user data??>>>>>>>>>>>>>>>>>>>>>>>>>>>>', context.state.user.fbid);
         axios.get('http://wwww.localhost:8888/links/' + context.state.user.fbid)
           .then((links) => {
             //getting back array of objects links.data = [{assignee: 'FriendsID', categoryId: '', createdAt: '...', id: int, likes: int, owner: 'userID', updatedAt: '...', 'url: 'url', userFbid: ''}, {link2}, {link3}]
@@ -74,10 +73,9 @@ class HomeContainer extends React.Component {
     this.setState({
       articlesFromFriends: articlesFromFriends
     });
-  }
+  }  
 
   render() {
-      console.log('i am in HomeContainer, what is user>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', this.state.user);
     return (
     <div style={{'height': '100%', 'width': '100%'}}>
       <HomePresentational >

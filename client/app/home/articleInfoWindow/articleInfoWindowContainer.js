@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import ArticleInfoWindowPresentational from './articleInfoWindowPresentational';
+import he from 'he';
 
 
 class ArticleInfoWindowContainer extends React.Component {
@@ -11,7 +12,6 @@ class ArticleInfoWindowContainer extends React.Component {
       excerpt: ''
     };
     this.getUrlInfo = this.getUrlInfo.bind(this);
-    this.getArticleBreakDown = this.getArticleBreakDown.bind(this);
   }
 
   componentWillMount() {
@@ -28,25 +28,23 @@ class ArticleInfoWindowContainer extends React.Component {
         url: url
       },
       success: function(data) {
-        // console.log('this is in getUrlInfo====>>>>>', JSON.parse(data.body).title);
         var parsedData = JSON.parse(data.body);
+        var decodedExcerpt = he.decode(parsedData.excerpt);
+        console.log('this is in getUrlInfo====>>>>>', parsedData.excerpt, decodedExcerpt);
         context.setState({
           title: parsedData.title,
           image: parsedData.lead_image_url,
-          excerpt: parsedData.excerpt
+          excerpt: decodedExcerpt
         });
       },
       error: function(err) {
-        console.log(err);
+        console.log('there is an error in ArticleInfoWindowContainer, it\'s a sad day! D=', err);
       }
     });
   }
 
-  getArticleBreakDown() {
-
-  }
-
   render() {
+    console.log('i am in ArticleInfoWindowContainer this.state>>>>>>>>>>>>>>>>>>>>>', this.state);
     return (
       <ArticleInfoWindowPresentational title={this.state.title} image={this.state.image} excerpt={this.state.excerpt}/>
       );

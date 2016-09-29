@@ -2,12 +2,12 @@ import React, { PropTypes } from 'react';
 
 const ArticleInfoWindowPresentational = (props) => {
   return (
-    <div className='article card small hoverable'>
+    <div className="col s6 m6" className='article card small hoverable'>
       <div className='articleheader'>
-        <img src={this.props.image}/>
-        <h4>{this.props.title}</h4>
+        <img className="userImg" src={props.image}/>
+        <h4>{props.title}</h4>
       </div>
-      <p>{this.props.excerpt}</p>
+      <p>{props.excerpt}</p>
     </div>
     );
 };
