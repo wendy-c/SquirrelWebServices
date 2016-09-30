@@ -4,7 +4,7 @@ const NavBarPresentational = (props) => {
   return (
     <div>
       <nav>
-        <div className="nav-wrapper orange darken-2">
+         <div className="nav-wrapper deep-orange darken-1">
          <img className="logo" src="img/whiteSquirrel.png"/>
            <a href="#" className="brand-logo">Squirrel.io</a>
 
