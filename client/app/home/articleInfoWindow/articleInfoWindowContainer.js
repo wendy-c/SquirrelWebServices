@@ -18,7 +18,7 @@ class ArticleInfoWindowContainer extends React.Component {
     this.checkIfFromFriend = this.checkIfFromFriend.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     console.log('are you getting stuff from friends??>>>>>', this.props);
     this.getUrlInfo(this.props.url);
     this.checkIfFromFriend();
@@ -54,7 +54,7 @@ class ArticleInfoWindowContainer extends React.Component {
       return (<ArticleInfoFromFriendPresentational title={this.state.title} image={this.state.image} excerpt={this.state.excerpt} assignee={this.props.assignee} createdAt={this.props.createdAt} url={this.props.url}/>);
     } else {
       return (
-        <ArticleInfoWindowPresentational title={this.state.title} image={this.state.image} excerpt={this.state.excerpt}/>
+        <ArticleInfoWindowPresentational title={this.state.title} image={this.state.image} excerpt={this.state.excerpt} url={this.props.url}/>
         );
     }
   }

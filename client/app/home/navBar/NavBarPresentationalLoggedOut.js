@@ -4,7 +4,7 @@ const NavBarPresentationalLoggedOut = (props) => {
   return (
     <div>
       <nav>
-         <div className="nav-wrapper teal lighten-4">
+         <div className="nav-wrapper deep-orange darken-1">
            <a href="#" className="brand-logo">Squirrel.io</a>
          </div>
        </nav>
