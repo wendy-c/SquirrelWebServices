@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import ArticleInfoWindowPresentational from './articleInfoWindowPresentational';
 import ArticleInfoFromFriendPresentational from './articleInfoFromFriendPresentational';
 import he from 'he';
+import axios from 'axios';
 
 
 class ArticleInfoWindowContainer extends React.Component {
@@ -38,7 +39,8 @@ class ArticleInfoWindowContainer extends React.Component {
         context.setState({
           title: parsedData.title,
           image: parsedData.lead_image_url,
-          excerpt: decodedExcerpt
+          excerpt: decodedExcerpt,
+          assigneeInfo: ''
         });
       },
       error: function(err) {
@@ -56,6 +58,10 @@ class ArticleInfoWindowContainer extends React.Component {
         );
     }
   }
+
+  // getAssignee() {
+  //   //get Assignee name
+  // }
 
   render() {
     // console.log('i am in ArticleInfoWindowContainer this.state>>>>>>>>>>>>>>>>>>>>>', this.state);

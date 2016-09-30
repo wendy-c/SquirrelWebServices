@@ -5,13 +5,13 @@ const ArticleInfoFromFriendPresentational = (props) => {
     <div className="card horizontal">
       <a href={props.url}>
         <div className="card-image">
-          <img src={props.image}/>
+          <img className="userImg" src={props.image}/>
         </div>
         <div className="card-stacked">
           <div className="card-content">
             <p>{props.excerpt}</p>
           </div>
-          <div class="card-action">
+          <div className="card-action">
           <p>FROM {props.assignee}</p>
           </div>
         </div>

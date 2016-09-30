@@ -15,7 +15,7 @@ class NavBarContainer extends React.Component {
   render() {
     return (
     <div id='navbar'>
-      <div className='navbar class="card-panel orange darken-3'>
+      <div className='navbar class="card-panel deep-orange darken-2'>
         <NavBarPresentational />
       </div>
       <div className='navbarchildren'>
