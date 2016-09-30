@@ -2,8 +2,6 @@ import React, { Proptypes } from 'react';
 import InputBarPresentational from './InputBarPresentational';
 import axios from 'axios';
 
-var hardCodedUserID = '10105564501516258'
-
 class InputBarContainer extends React.Component {
   constructor(props) {
     super(props);

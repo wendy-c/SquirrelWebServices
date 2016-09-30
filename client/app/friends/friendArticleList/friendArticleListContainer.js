@@ -9,13 +9,6 @@ class FriendArticleListContainer extends React.Component {
     };
   }
 
-  searchFriends() {
-
-  }
-
-  addFriends() {
-    
-  }
 
   render() {
     return (

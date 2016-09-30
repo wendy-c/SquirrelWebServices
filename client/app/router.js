@@ -5,7 +5,7 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 // import Components
 import LoginContainer from './login/LoginContainer';
 import HomeContainer from './home/HomeContainer';
-import FriendsContainer from './friends/friendsContainer';
+import FriendContainer from './friends/friendContainer';
 import UserInboxContainer from './home/userInbox/userInboxContainer';
 import NavBarContainer from './home/navBar/NavBarContainer';
 import axios from 'axios';
@@ -31,7 +31,7 @@ const routes = (
     <Route path='/' component={NavBarContainer}>
       <IndexRoute component={HomeContainer} onEnter={validate}/>
       <Route path='login' component={LoginContainer} />
-      <Route path='friends' component={FriendsContainer} onEnter={validate}/>
+      <Route path='friends' component={FriendContainer} onEnter={validate}/>
     </Route>
   </Router>
   );
