@@ -18,7 +18,6 @@ class FriendInboxContainer extends React.Component {
     const mappedArticles = this.props.articles.map((item, idx) => {
       return (<ArticleInfoWindowContainer key={idx} url={item.url} createdAt={item.createdAt} assignee={item.assignee}/>);
     });
-
     return (
     <FriendInboxPresentational>
       {mappedArticles}

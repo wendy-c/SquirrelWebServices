@@ -12,7 +12,8 @@ class HomeContainer extends React.Component {
     this.state = {
       user: '',
       userArticles: [],
-      articlesFromFriends: []
+      userFriendsList: [],
+      articlesFromFriends: [],
     };
     this.getUserArticles = this.getUserArticles.bind(this);
   }
@@ -23,15 +24,13 @@ class HomeContainer extends React.Component {
 
     axios.get('/checkAuth')
       .then((user) => {
-        
         context.setState({
           user: user.data,
         });
-
         axios.get('http://wwww.localhost:8888/links/' + context.state.user.fbid)
           .then((links) => {
             //getting back array of objects links.data = [{assignee: 'FriendsID', categoryId: '', createdAt: '...', id: int, likes: int, owner: 'userID', updatedAt: '...', 'url: 'url', userFbid: ''}, {link2}, {link3}]
-            context.setState({
+            this.setState({
               articles: links.data
             });
           })
