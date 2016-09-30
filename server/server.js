@@ -33,12 +33,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passportConfig(passport);
-
+//API ROUTES 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 //check to see req session?
-app.get('/checkAuth', function(req, res) {
-  console.log('hello user info please???=====================>>>>>>', req.user, 'yoloo');
+app.get('/checkAuth', function(req, res){
   res.send(req.user);
 });
 
@@ -46,44 +45,7 @@ app.get('/checkAuth', function(req, res) {
 
 app.post('/getUrlInfo', function(req, res) {
   //get request to url
-  // var options = {
-  //     uri: req.body.url,
-  //     transform: function (body) {
-  //         return cheerio.load(body);
-  //     }
-  //console.log('what is this cheerio thing????>>>>>>', options);
-  // request(req.body.url, function(error, response, html) {
-  //   if (!error && response.statusCode === 200) {
-  //     var $ = cheerio.load(html);
 
-  //     //console.log('what is my html???---->>>>>', $('body').children());
-  //     var title, image, textBody;
-  //     var json = {
-  //       title: '',
-  //       image: '',
-  //       textBody: ''
-  //     };
-
-  //     $('title').filter(function() {
-  //       console.log('what is $(title)===================>>>>>>>', $(this));
-  //       var data = $(this);
-  //       title = data.children().first().text();
-  //       json.title = title;
-  //     });
-
-  //     $('p').filter(function() {
-  //       var data = $(this);
-  //       textBody = data.children().first().text();
-  //       json.textBody = textBody;
-  //     });
-
-  //     $('img').filter(function() {
-  //       var data = $(this);
-  //       image = data.children().first().text();
-  //       json.image = image;
-
-  //     });
-  //   }
 
   //make call to readibility
   request('https://readability.com/api/content/v1/parser?url=' + req.body.url + '/&token=ea069fd819bb249c3f5a3b38bbd39b3622ab1ea9', function(req, rs) {
@@ -106,6 +68,13 @@ app.get('/auth/twitter/callback',
     failureRedirect: '/login'
   }));
 
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+
 app.listen('3010', function() {
   console.log('listening on port 3010!');
 });
+

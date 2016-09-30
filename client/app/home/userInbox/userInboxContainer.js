@@ -25,6 +25,7 @@ class UserInboxContainer extends React.Component {
         return -1;
       }
       return 0;
+
     });
     this.setState({
       sortedUserArticles: sorted
@@ -33,11 +34,9 @@ class UserInboxContainer extends React.Component {
   }
 
   render() {
-
     var mappedArticles = this.props.articles.map((item, idx) => {
       return (<ArticleInfoWindowContainer key={idx} url={item.url} createdAt={item.createdAt}/>);
     });
-
     return (
     <UserInboxPresentational >
       {mappedArticles}

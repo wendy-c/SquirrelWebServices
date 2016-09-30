@@ -1,0 +1,41 @@
+.friendpresentational {
+  height:100%;
+}
+
+.friendsearchbar {
+  height: 15%;
+  background-color: white;
+}
+
+.friendbody {
+  /*display: flex;*/
+  height:85%;
+  /*background-color: red;*/
+  /*flex-direction: row;*/
+  /*justify-content: space-between;*/
+}
+
+.friendlist {
+  /*background-color: gray;*/
+  height:100%;
+}
+
+.friendarticle {
+  /*background-color: white;*/
+  height:100%;
+}
+
+.searchfriendbutton {
+
+}
+
+.friendcard {
+  height: 10%;
+}
+
+.friendarticle {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
