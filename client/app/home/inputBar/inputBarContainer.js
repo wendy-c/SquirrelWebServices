@@ -43,4 +43,4 @@ class InputBarContainer extends React.Component {
   }
 }
 
-export default InputBarContainer
+export default InputBarContainer;

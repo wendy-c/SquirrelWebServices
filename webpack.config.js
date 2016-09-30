@@ -1,4 +1,4 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/client/app/index.html',
   filename: 'index.html',
@@ -19,6 +19,7 @@ module.exports = {
       {test: /\.css$/, loader: "style-loader!css-loader"},
     ]
   },
+  devtool: 'source-map',
   plugins: [HTMLWebpackPluginConfig]
 };
 

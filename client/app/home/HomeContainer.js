@@ -17,40 +17,43 @@ class HomeContainer extends React.Component {
     this.getUserArticles = this.getUserArticles.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     var context = this;
     //get user name and id
+
     axios.get('/checkAuth')
-      .then(function(user) {
-        //console.log(user, 'this is the data in componentWillMount');
+      .then((user) => {
+        
         context.setState({
           user: user.data,
-          articles: [],
-          userLinks: [],
-          linksFromFriends: []
         });
-      })
-      .then(function(user) {
-        //get user articles
+
         axios.get('http://wwww.localhost:8888/links/' + context.state.user.fbid)
-          .then(function(links) {
-            console.log('what links am i getting back???????', links);
+          .then((links) => {
             //getting back array of objects links.data = [{assignee: 'FriendsID', categoryId: '', createdAt: '...', id: int, likes: int, owner: 'userID', updatedAt: '...', 'url: 'url', userFbid: ''}, {link2}, {link3}]
             context.setState({
               articles: links.data
             });
           })
-          .then(function(res) {
+          .then((res) => {
+          //get user articles
             context.getUserArticles();
+            context.getArticlesFromFriends();
+          })
+          .catch((err) => {
+            console.log('There is an err in HomeContainer, it\'s a sad day D=', err);
           });
-        
+
+      })
+      .catch((err) => {
+        console.log('There is an error in HomeContainer getting user, it\'s a sad day D=', err);
       });
 
   }
 
   getUserArticles() {
     var userArticles = this.state.articles.filter((link) => {
-      return link.owner === this.state.user.fbid;
+      return link.assignee === this.state.user.fbid;
     }).map((item) => {
       return {url: item.url, createdAt: item.createdAt};
     });
@@ -62,17 +65,17 @@ class HomeContainer extends React.Component {
 
   getArticlesFromFriends() {
     var articlesFromFriends = this.state.articles.filter((link) => {
-      return link.owner !== this.state.user.fbid;
+      return link.assignee !== this.state.user.fbid;
     }).map((item) => {
-      return {assignee: item.assignee, url: item.url};
+      return {assignee: item.assignee, url: item.url, createdAt: item.createdAt};
     });
+    console.log('i am in getArticlesFromFriends>>>>>>>', articlesFromFriends);
     this.setState({
       articlesFromFriends: articlesFromFriends
     });
-  }
+  }  
 
   render() {
-      //console.log('what is user in componentDidMount', this.state.user);
     return (
     <div style={{'height': '100%', 'width': '100%'}}>
       <HomePresentational >

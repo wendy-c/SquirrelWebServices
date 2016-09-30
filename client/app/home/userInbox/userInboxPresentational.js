@@ -5,11 +5,13 @@ const UserInboxPresentational = (props) => {
   return (
     <div className='userinbox'>
       <h5>User Inbox Stuff</h5>
-      <div className='userinboxarticles'>
+      <div className="row">
+      <div className="col s12 m6" className='userinboxarticles'>
         {props.children}
+      </div>
       </div>
     </div>
     );
-}
+};
 
 export default UserInboxPresentational;
