@@ -5,7 +5,7 @@ const NavBarPresentational = (props) => {
     <div>
       <nav>
          <div className="nav-wrapper deep-orange darken-1">
-         <img className="logo" src="img/flying-squirrel.png"/>
+         <img className="navbar-logo" src="./styles/img/flying-squirrel.png"/>
            <a href="#" className="brand-logo">Squirrel.io</a>
 
            <ul id="nav-mobile" className="right hide-on-med-and-down">
