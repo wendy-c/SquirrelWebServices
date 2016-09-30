@@ -33,10 +33,19 @@ class UserInboxContainer extends React.Component {
   }
 
   render() {
+<<<<<<< a90dd69148aa7d4c4d7ec1c2063686999d22f840
 
     var mappedArticles = this.props.articles.map((item, idx) => {
       return (<ArticleInfoWindowContainer key={idx} url={item.url} createdAt={item.createdAt}/>);
     });
+=======
+    console.log('i am in UserInboxContainer===>>>>', this.props)
+    //dummy test articles below
+    var mappedArticles = [];
+    for(var i = 0; i < 20; i++ ){
+      mappedArticles.push(<ArticleInfoWindowContainer key={i}/>)
+    } 
+>>>>>>> update stlye of friend view friend's article. Create basic friendList infowindow template
 
     return (
     <UserInboxPresentational >

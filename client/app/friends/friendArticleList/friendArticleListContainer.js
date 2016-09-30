@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import FriendArticleListPresentational from './friendArticleListPresentational'
+import ArticleInfoWindowContainer from '../../home/articleInfoWindow/articleInfoWindowContainer';
 
 class FriendArticleListContainer extends React.Component {
   constructor(props){
@@ -11,8 +12,14 @@ class FriendArticleListContainer extends React.Component {
 
 
   render() {
+    const articles = [];
+    for(var i = 0; i < 10; i ++){
+      articles.push(<ArticleInfoWindowContainer key={i}/>)
+    }
     return (
-      <FriendArticleListPresentational />
+      <FriendArticleListPresentational>
+        {articles}
+      </FriendArticleListPresentational>
       )
   }
 }

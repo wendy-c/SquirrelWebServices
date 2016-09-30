@@ -20,3 +20,4 @@ const FriendSearchBarPresentational = (props) => {
 }
 
 export default FriendSearchBarPresentational
+
