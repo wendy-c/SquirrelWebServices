@@ -36,7 +36,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .userinboxarticles {
@@ -54,10 +54,20 @@ body {
   justify-content: space-around;
 }
 
+.loginBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .loginbuttons {
   display: flex;
   align-items: center;
+  flex-direction: row;
   justify-content: center;
+  width: 200px;
+  margin-top: 25px;
 }
 
 .article {
@@ -68,4 +78,21 @@ body {
 .inputfield {
   display: flex;
   flex-direction: row;
+}
+
+.userImg {
+  max-height: auto;
+  max-width: 100%;
+}
+
+.logo {
+  height: 70%;
+}
+
+.login-logo {
+  height: 80%;
+}
+
+.brand-logo {
+  margin-left: 10px;
 }
