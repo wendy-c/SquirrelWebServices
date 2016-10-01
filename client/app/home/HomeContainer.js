@@ -28,7 +28,7 @@ class HomeContainer extends React.Component {
     .then((links) => {
       console.log(this.state.user, 'working here?');
       console.log(links, 'links links links');
-      this.setState({articles: links.data}, ()=>{
+      this.setState({articles: links.data[0]}, ()=>{
         this.sortArticles();
       });
     })
