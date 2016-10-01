@@ -11,74 +11,63 @@ class HomeContainer extends React.Component {
     super(props);
     this.state = {
       user: '',
+      articles: '',
       userArticles: [],
       userFriendsList: [],
       articlesFromFriends: [],
     };
-    this.getUserArticles = this.getUserArticles.bind(this);
   }
 
-  componentWillMount() {
-    var context = this;
-    //get user name and id
-
+  componentDidMount() {
+  //get user name and id
     axios.get('/checkAuth')
-      .then((user) => {
-        context.setState({
-          user: user.data,
-        });
-        axios.get('http://wwww.localhost:8888/links/' + context.state.user.fbid)
-          .then((links) => {
-            //getting back array of objects links.data = [{assignee: 'FriendsID', categoryId: '', createdAt: '...', id: int, likes: int, owner: 'userID', updatedAt: '...', 'url: 'url', userFbid: ''}, {link2}, {link3}]
-            this.setState({
-              articles: links.data
-            });
-          })
-          .then((res) => {
-          //get user articles
-            context.getUserArticles();
-            context.getArticlesFromFriends();
-          })
-          .catch((err) => {
-            console.log('There is an err in HomeContainer, it\'s a sad day D=', err);
-          });
+    .then((user)=>{
+      this.setState({user: user.data})
+      return axios.get('http://wwww.localhost:8888/links/' + user.data.fbid)
+    })
+    .then((links) => {
+      console.log(this.state.user, 'working here?');
+      console.log(links, 'links links links');
+      this.setState({articles: links.data[0]}, ()=>{
+        this.sortArticles();
+      });
+    })
+    .catch((err)=> {
+      console.log(err)
+    })
+  }
 
-      })
-      .catch((err) => {
-        console.log('There is an error in HomeContainer getting user, it\'s a sad day D=', err);
+  shouldComponentUpdate(state, props){
+    console.log(state, props);
+    return true;
+  }
+
+  sortArticles() {
+    console.log(this.state.user.fbid, 'testing this once');
+
+    const userArticles = this.state.articles.filter((link) => {
+        return link.assignee === this.state.user.fbid;
+      }).map((item) => {
+        return {url: item.url, createdAt: item.createdAt};
       });
 
-  }
+    const articlesFromFriends = this.state.articles.filter((link) => {
+        return link.assignee !== this.state.user.fbid;
+      }).map((item) => {
+        return {assignee: item.assignee, url: item.url, createdAt: item.createdAt};
+      });
 
-  getUserArticles() {
-    var userArticles = this.state.articles.filter((link) => {
-      return link.assignee === this.state.user.fbid;
-    }).map((item) => {
-      return {url: item.url, createdAt: item.createdAt};
-    });
-    // console.log('i am in getUserArticles===>>>>>', userArticles);
     this.setState({
-      userArticles: userArticles 
+      userArticles: userArticles,
+      articlesFromFriends: articlesFromFriends, 
     });
   }
-
-  getArticlesFromFriends() {
-    var articlesFromFriends = this.state.articles.filter((link) => {
-      return link.assignee !== this.state.user.fbid;
-    }).map((item) => {
-      return {assignee: item.assignee, url: item.url, createdAt: item.createdAt};
-    });
-    console.log('i am in getArticlesFromFriends>>>>>>>', articlesFromFriends);
-    this.setState({
-      articlesFromFriends: articlesFromFriends
-    });
-  }  
 
   render() {
     return (
     <div style={{'height': '100%', 'width': '100%'}}>
       <HomePresentational >
-        <InputBarContainer userId={this.state.userId}/>
+        <InputBarContainer userId={this.state.user}/>
         <div className='row inboxmain'>
           <div className='col s8 grey lighten-5'>
             <Scrollbars style={{ height: 600 }}>

@@ -24,6 +24,7 @@ class FriendContainer extends React.Component {
 
   render() {
     return (
+      <div style={{'height': '100%', 'width': '100%'}}>
       <FriendPresentational>
         <div className='friendsearchbar'>
           <FriendSearchBarContainer/>
@@ -41,6 +42,7 @@ class FriendContainer extends React.Component {
           </div>
         </div>
       </FriendPresentational>
+      </div>
       )
   }
 }
