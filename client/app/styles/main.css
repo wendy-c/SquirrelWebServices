@@ -20,6 +20,12 @@ body {
   height: 10%;
 }
 
+.navbar-logo {
+  margin-top: 0.5%;
+  height: 80%;
+  padding-right: 1%;
+}
+
 .navbarchildren {
   height: 90%;
 }
@@ -175,9 +181,9 @@ body {
 .wrapper {
   width: 350px;
   height: auto;
-  margin: 10px 10px;
-  padding-left: 1em;
-  padding-right: 1em;
+/*  margin: 3px 3px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;*/
   /*overflow: scroll;*/
 }
 
@@ -218,14 +224,17 @@ body {
 }
  
 .card__image {
-  height: 100px;
+  height: 225px;
   background-color: #eee;
 }
 
-.card__image div {
+.card__image2 {
+  height:100%;
   width: 100%;
-  max-width: 100%;
   display: block;
+  /*background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/LARGE_elevation.jpg/1600px-LARGE_elevation.jpg');*/
+  z-index: 30;
+  background-size: cover;
 }
 /*.card__image img {
   width: 100%;
@@ -244,21 +253,30 @@ body {
   margin-left: 0.8rem;
 }
 
+.card__title {
+  display: block;
+  top: 5px;
+  height: 35px;
+}
+
 /* card article */
 .card__article a {
   text-decoration: none;
   color: #444;
   transition: all 0.5s ease;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
-  line-height: 15px;
+  line-height: 16px;
+  overflow: hidden;
 }
 .card__article a:hover {
   color: #2980b9;
 }
 
 .card__article p {
+  height: 102px;
   font-size: 14px;
+  overflow: hidden;
 }
 
 /* card action */

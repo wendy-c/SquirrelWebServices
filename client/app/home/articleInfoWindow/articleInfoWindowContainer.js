@@ -35,7 +35,7 @@ class ArticleInfoWindowContainer extends React.Component {
       },
       success: function(data) {
         var parsedData = JSON.parse(data.body);
-        var author = parsedData.author === null ? 'Squirrely' : parsedData.author.split(',')[0];
+        var author = parsedData.author === null ? 'Squirrely' : parsedData.author === undefined ? 'Squirrely' : parsedData.author.split(',')[0];
         var decodedExcerpt = he.decode(parsedData.excerpt);
         // console.log('this is in getUrlInfo====>>>>>', parsedData.excerpt, decodedExcerpt);
         context.setState({
