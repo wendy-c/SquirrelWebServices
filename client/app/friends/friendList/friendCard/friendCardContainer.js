@@ -10,6 +10,7 @@ class FriendCardContainer extends React.Component {
   }
 
   render() {
+    console.log('i am in FriendCardContainer', this.props);
     return (
       <div onClick={() => this.props.handleClick(this.props.friend)}>
       <FriendCardPresentational name={this.props.friend.fbname}/>

@@ -14,9 +14,12 @@ class FriendContainer extends React.Component {
     this.state = {
       user: '',
       selected: '',
-      friends: []
+      friends: [],
+      friendSearchResult: [],
+      searchView: false
     };
     this.updateFriendArticles = this.updateFriendArticles.bind(this);
+    this.updateToSearchResult = this.updateToSearchResult.bind(this);
   }
 
   componentWillMount() {
@@ -28,10 +31,13 @@ class FriendContainer extends React.Component {
         this.setState({
           user: user.data,
         });
-        return axios.get('http://wwww.localhost:8888/friends/' + this.state.user.fbid)
+        console.log('who is the user in FriendContainer>>>>', user.data);
+        axios.get('http://wwww.localhost:8888/friends/' + this.state.user.fbid)
           .then((friends) => {
+            console.log('i am in FriendContainer get req =====>>>>>', friends);
+            //friends.data = [{fbid:...,fbname:...,links:[...]}, {friend2}]
             this.setState({
-              friends: friends.data.friends
+              friends: friends.data
             });
           })
           .catch((err) => {
@@ -45,28 +51,43 @@ class FriendContainer extends React.Component {
 
   }
 
-  searchFriends() {
-
-  }
-
-  addFriends() {
-    
-  }
-
   updateFriendArticles(friend) {
-    console.log('in updateFriendArticles>>>>>>> or not');
     this.setState({
-      selected: friend
+      selected: friend,
+      searchView: false
+    });
+    // console.log('switch selected friend>>>>>>> ', this.state.selected);
+  }
+
+  updateToSearchResult(result) {
+    this.setState({
+      friendSearchResult: result,
+      searchView: true
     });
   }
 
+  whichView() {
+    if (this.state.searchView) {
+      return (
+        //searchView
+        <div></div>
+      );
+    } else {
+      if (this.state.selected === '') {
+        return (<div></div>);
+      } else {
+        return (<FriendArticleListContainer friend={this.state.selected}/>);
+      }
+    }
+  }
+
   render() {
-    console.log('i am in friendContainer, who is being selected? >>>>>>>', this.state.selected);
+    console.log('i am in friendContainer, who are my friends >>>>>>>', this.state.selected);
     return (
       <div style={{'height': '100%', 'width': '100%'}}>
       <FriendPresentational>
         <div className='friendsearchbar'>
-          <FriendSearchBarContainer/>
+          <FriendSearchBarContainer updateToSearchResult={this.updateToSearchResult}/>
         </div>
         <div className='friendbody row'>
           <div className='friendlist col s4 grey lighten-5'>
@@ -80,7 +101,7 @@ class FriendContainer extends React.Component {
           </div>
           <div className='friendarticle col s8 grey lighten-3'>
             <Scrollbars style={{ height: 600 }}>
-              <FriendArticleListContainer friend={this.state.selected}/>
+            {this.whichView()}
             </Scrollbars>
           </div>
         </div>
