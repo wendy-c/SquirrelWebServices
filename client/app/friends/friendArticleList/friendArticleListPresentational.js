@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
 
 const FriendArticleListPresentational = (props) => {
   return (
@@ -8,7 +8,7 @@ const FriendArticleListPresentational = (props) => {
         {props.children}
       </div>
     </div>
-    )
-}
+    );
+};
 
-export default FriendArticleListPresentational
+export default FriendArticleListPresentational;

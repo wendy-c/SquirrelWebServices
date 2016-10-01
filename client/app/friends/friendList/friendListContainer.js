@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react'
-import FriendListPresentational from './friendListPresentational'
-import FriendCardContainer from './friendCard/friendCardContainer'
+import React, { PropTypes } from 'react';
+import FriendListPresentational from './friendListPresentational';
+import FriendCardContainer from './friendCard/friendCardContainer';
+import FriendArticleListContainer from './friendArticleList/friendArticleListContainer';
 
 class FriendListContainer extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
 

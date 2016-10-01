@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
 
 const dummyphoto = 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgXAAAAJGQ2MDIyODY3LTU2ODktNGRmMS1iNGVkLTY3YjQwM2VkMGEwMw.jpg';
 
@@ -11,15 +11,15 @@ const FriendCardPresentational = (props) => {
             </div>
             <div className="col s10">
               <span className="black-text">
-                Add friend card example. More functionality?
+                I am {props.name}
               </span>
             </div>
           </div>
         </div>
-    )
-}
+    );
+};
 
-export default FriendCardPresentational
+export default FriendCardPresentational;
 
       // <div class="col s12 m8 offset-m2 l6 offset-l3">
       //   <div class="card-panel grey lighten-5 z-depth-1">
