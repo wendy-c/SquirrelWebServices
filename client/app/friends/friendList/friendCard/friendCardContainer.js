@@ -13,7 +13,7 @@ class FriendCardContainer extends React.Component {
     console.log('i am in FriendCardContainer', this.props);
     return (
       <div onClick={() => this.props.handleClick(this.props.friend)}>
-      <FriendCardPresentational name={this.props.friend.fbname}/>
+      <FriendCardPresentational name={this.props.friend.fbname} avatar={this.props.friend.avatar}/>
       </div>
       );
   }

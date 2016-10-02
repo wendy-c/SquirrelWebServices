@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import FriendPresentational from './friendPresentational';
-// import FriendListContainer from './friendList/friendListContainer';
 import FriendArticleListContainer from './friendArticleList/friendArticleListContainer';
 import FriendSearchBarContainer from './friendSearchBar/friendSearchBarContainer';
 import FriendCardContainer from './friendList/friendCard/friendCardContainer';
+import FriendSearchResultContainer from './friendSearchResult/friendSearchResultContainer';
 import { Scrollbars } from 'react-custom-scrollbars';
 import axios from 'axios';
 
@@ -31,10 +31,10 @@ class FriendContainer extends React.Component {
         this.setState({
           user: user.data,
         });
-        console.log('who is the user in FriendContainer>>>>', user.data);
+        // console.log('who is the user in FriendContainer>>>>', user.data);
         axios.get('http://wwww.localhost:8888/friends/' + this.state.user.fbid)
           .then((friends) => {
-            console.log('i am in FriendContainer get req =====>>>>>', friends);
+            // console.log('i am in FriendContainer get req =====>>>>>', friends);
             //friends.data = [{fbid:...,fbname:...,links:[...]}, {friend2}]
             this.setState({
               friends: friends.data
@@ -60,6 +60,8 @@ class FriendContainer extends React.Component {
   }
 
   updateToSearchResult(result) {
+    //getting result
+    console.log('I am in updateToSearchResult', result);
     this.setState({
       friendSearchResult: result,
       searchView: true
@@ -70,13 +72,16 @@ class FriendContainer extends React.Component {
     if (this.state.searchView) {
       return (
         //searchView
-        <div></div>
+        <div>
+          <h5>Result: </h5>
+          <FriendSearchResultContainer user={this.state.user} result={this.state.friendSearchResult}/>
+        </div>
       );
     } else {
       if (this.state.selected === '') {
         return (<div></div>);
       } else {
-        return (<FriendArticleListContainer friend={this.state.selected}/>);
+        return (<FriendArticleListContainer user={this.state.user} friend={this.state.selected}/>);
       }
     }
   }
@@ -94,7 +99,7 @@ class FriendContainer extends React.Component {
             <Scrollbars style={{ height: 600 }}>
             {this.state.friends.map((friend, idx) => {
               return (
-                <FriendCardContainer friend={friend} key={idx} handleClick={this.updateFriendArticles} />
+                <FriendCardContainer user={this.state.user} friend={friend} key={idx} handleClick={this.updateFriendArticles} />
                 );
             })}
             </Scrollbars>

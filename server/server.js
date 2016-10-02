@@ -41,6 +41,20 @@ app.get('/checkAuth', function(req, res){
   res.send(req.user);
 });
 
+//////////////////////////////////////////////////////////////////////////
+//delete when query to db is established
+app.get('/searchFriend', function(req, res) {
+  console.log('got to the back for /searchFriend>>>>>>>>>');
+  res.send([{
+    avatar: "https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/13592162_10154405816284363_2728511714196473_n.jpg?oh=56c39b420052da84d8088c01941a872d&oe=58746F98",
+    createdAt: "2016-10-01T17:58:25.000Z",
+    fbid: "10154660869289363",
+    fbname: "Jordan Taylor",
+    updatedAt: "2016-10-01T17:58:25.000Z"
+  }]);
+});
+//////////////////////////////////////////////////////////////////////////
+
 //crawl article
 
 app.post('/getUrlInfo', function(req, res) {
@@ -49,7 +63,7 @@ app.post('/getUrlInfo', function(req, res) {
 
   //make call to readibility
   request('https://readability.com/api/content/v1/parser?url=' + req.body.url + '/&token=ea069fd819bb249c3f5a3b38bbd39b3622ab1ea9', function(req, rs) {
-    console.log('readability GIVE ME INFO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', rs);
+    // console.log('readability GIVE ME INFO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', rs);
     res.send(rs);   
   });
 });

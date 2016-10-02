@@ -107,6 +107,43 @@ body {
   left: 40%;
 }
 
+.downloadBtn {
+  box-sizing: border-box;
+  position: relative;
+  background-color: #4db6ac;
+  margin: 0.2em;
+  padding: 0 15px 0 15px;
+  border: 2px solid #4db6ac;
+  text-align: center;
+  height: 5em;
+  border-radius: 0.2em;
+  font-size: 16px;
+  color: #fff;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.downloadBtn:active {
+  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+}
+
+.stashBtn {
+  box-sizing: border-box;
+  position: relative;
+  /* width: 13em;  - apply for fixed size */
+  background-color: white;
+  margin: 0.2em;
+  padding: 0 15px 0 15px;
+  border: 1px solid #4db6ac;
+  text-align: center;
+  height: 45px;
+  border-radius: 0.2em;
+  font-size: 16px;
+  color: #4db6ac;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
 /* Shared */
 .loginBtn {
   box-sizing: border-box;
@@ -141,7 +178,7 @@ body {
 }
 /* Facebook */
 .loginBtn--facebook {
-  background-color: #ffccbc;
+  background-color: #e64a19;
   background-image: linear-gradient(#ff8a65, #ffccbc);
   /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
   text-shadow: 0 -1px 0 #354C8C;
@@ -160,7 +197,7 @@ body {
 /* Twitter */
 .loginBtn--twitter {
   /*font-family: "Roboto", Roboto, arial, sans-serif;*/
-  background-color: #ffccbc;
+  background-color: #e64a19;
   background-image: linear-gradient(#ff8a65, #ffccbc);
   text-shadow: 0 -1px 0 #354C8C;
   padding-right: 35px;
@@ -386,4 +423,36 @@ body {
 .twitter:hover,
 .googleplus:hover {
   color: #eee;
+}
+
+.loginBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.downloadBtn-logo {
+  height: 50%;
+  text-align: left;
+}
+
+.bk-image {
+  margin-top: 1em;
+  width: 100%;
+}
+
+.header {
+  color: #212121;
+  text-align: center;
+}
+
+.sub-head {
+  color: #fff;
+  text-shadow: 1px 1px #757575;
+}
+
+.buttoncontainer{
+  position: absolute;
+  top: 40%;
+  left: 40%;
 }
