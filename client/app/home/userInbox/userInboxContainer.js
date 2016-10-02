@@ -11,6 +11,10 @@ class UserInboxContainer extends React.Component {
     // };
   }
 
+  componentWillUpdate(nextProps) {
+    console.log(nextProps.articles, 'whats in next props');
+  }
+
   render() {
     var mappedArticles = this.props.articles.map((item, idx) => {
       return (<ArticleInfoWindowContainer key={idx} url={item.url} createdAt={item.createdAt}/>);
