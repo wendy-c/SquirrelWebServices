@@ -34,9 +34,13 @@ class UserInboxContainer extends React.Component {
   // // }
 
   render() {
-    var mappedArticles = this.props.articles.map((item, idx) => {
-      return (<ArticleInfoWindowContainer key={idx} url={item.url} createdAt={item.createdAt}/>);
-    });
+    var mappedArticles = [];
+    for(var i = this.props.articles.length - 1; i > -1; i--){
+      mappedArticles.push(<ArticleInfoWindowContainer key={i} url={this.props.articles[i].url} createdAt={this.props.articles[i].createdAt}/>)
+    }
+    // var mappedArticles = this.props.articles.map((item, idx) => {
+    //   return (<ArticleInfoWindowContainer key={idx} url={item.url} createdAt={item.createdAt}/>);
+    // });
     return (
     <UserInboxPresentational >
       {mappedArticles}
