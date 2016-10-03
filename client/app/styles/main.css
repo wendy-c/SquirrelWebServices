@@ -212,10 +212,13 @@ body {
 
   opacity: 0.8;
   filter: alpha(opacity=40);
-/*  margin: 3px 3px;
-  padding-left: 0.5em;
-  padding-right: 0.5em;*/
-  /*overflow: scroll;*/
+  transition: all .2s ease-in-out; 
+  z-index: 1;
+}
+
+.wrapper:hover {
+  opacity: 1;
+  transform: scale(1.05);
 }
 
 .wrapper:hover {
@@ -331,7 +334,7 @@ body {
   overflow: hidden;
 }
 .card__article a:hover {
-  color: #2980b9;
+  color: #ff8a65;
 }
 
 .card__article p {
