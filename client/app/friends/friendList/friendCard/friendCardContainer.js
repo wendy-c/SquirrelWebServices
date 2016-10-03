@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
-import FriendCardPresentational from './friendCardPresentational'
+import React, { PropTypes } from 'react';
+import FriendCardPresentational from './friendCardPresentational';
 
 class FriendCardContainer extends React.Component {
   constructor(props) {
@@ -10,9 +10,12 @@ class FriendCardContainer extends React.Component {
   }
 
   render() {
+    console.log('i am in FriendCardContainer', this.props);
     return (
-      <FriendCardPresentational />
-      )
+      <div onClick={() => this.props.handleClick(this.props.friend)}>
+      <FriendCardPresentational name={this.props.friend.fbname} avatar={this.props.friend.avatar}/>
+      </div>
+      );
   }
 }
 

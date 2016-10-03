@@ -36,7 +36,7 @@ class NavBarContainer extends React.Component {
     const whichNavBar = this.state.isLoggedIn ? (<NavBarPresentational />) : (<NavBarPresentationalLoggedOut />);
     return (
     <div id='navbar'>
-      <div className='navbar class="card-panel deep-orange darken-2'>
+      <div className='navbar class="card-panel'>
         {whichNavBar}
       </div>
       <div className='navbarchildren valign-wrapper'>
