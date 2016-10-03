@@ -78,6 +78,12 @@ body {
   width: 48%;
 }
 
+/*.article:hover{
+  height: 225px;
+  width: 300px;
+  z-index: 10;
+}*/
+
 .inputfield {
   display: flex;
   flex-direction: row;
@@ -203,10 +209,18 @@ body {
   height: auto;
   padding-left: 10px;
   padding-right: 10px;
+
+  opacity: 0.8;
+  filter: alpha(opacity=40);
 /*  margin: 3px 3px;
   padding-left: 0.5em;
   padding-right: 0.5em;*/
   /*overflow: scroll;*/
+}
+
+.wrapper:hover {
+  opacity: 1;
+  filter: alpha(opacity=40);
 }
 
 .wrapper__friend {
@@ -247,11 +261,16 @@ body {
   margin-bottom: 1.6rem;
 }
 
+.wrapper .card__image2 {
+/*  opacity: 0.7;
+  filter: alpha(opacity=40);*/ 
+}
+
 .card__padding {
-  padding: 1.6rem;
+  padding: 1rem;
 }
  
-.card__image {
+.card__image { 
   height: 225px;
   background-color: #eee;
 }
@@ -268,12 +287,15 @@ body {
   /*background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/LARGE_elevation.jpg/1600px-LARGE_elevation.jpg');*/
   z-index: 30;
   background-size: cover;
+/*  opacity: 0.7;
+  filter: alpha(opacity=40);*/
 }
-/*.card__image img {
-  width: 100%;
-  max-width: 100%;
-  display: block;
-}*/
+
+/*.card__image2:hover {
+  opacity: 1;
+  filter: alpha(opacity=40);
+}
+*/
 
 .card__content {
   position: relative;
@@ -281,7 +303,7 @@ body {
 
 /* card meta */
 .card__meta time {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #bbb;
   margin-left: 0.8rem;
 }
@@ -290,6 +312,12 @@ body {
   display: block;
   top: 5px;
   height: 35px;
+  overflow: hidden;
+}
+.card__title a {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 /* card article */
@@ -315,17 +343,16 @@ body {
 /* card action */
 .card__action {
   overflow: hidden;
-  padding-right: 1.6rem;
-  padding-left: 1.6rem;
-  padding-bottom: 1.6rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
 }
-   
-.card__author {}
-
+ 
 .card__author img,
 .card__author-content {
   display: inline-block;
   vertical-align: middle;
+  font-size: 12px;
 }
 
 .card__author img{
