@@ -10,7 +10,7 @@ const FriendSearchBarPresentational = (props) => {
               </div>
                 <form className='inputfield' onSubmit={props.onSubmit}>
                 <input id='inputClear' onChange={props.onChange} type="text" className="search-field" placeholder="Search for friends here"/>
-                <button className="stashBtn" type="submit">stash</button>
+                <button className="stashBtn" type="submit">Search</button>
               </form>
             </div>
           </div>

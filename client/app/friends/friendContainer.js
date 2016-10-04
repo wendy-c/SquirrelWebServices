@@ -97,6 +97,7 @@ class FriendContainer extends React.Component {
         <div className='friendbody row'>
           <div className='friendlist col s4 grey lighten-5'>
             <Scrollbars style={{ height: 600 }}>
+            <h5>Following</h5>
             {this.state.friends.map((friend, idx) => {
               return (
                 <FriendCardContainer user={this.state.user} friend={friend} key={idx} handleClick={this.updateFriendArticles} />

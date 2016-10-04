@@ -556,3 +556,7 @@ body {
   bottom: -8px;
   left: 83%;
 }
+
+.article-thumbnail {
+  width: 20%;
+}
