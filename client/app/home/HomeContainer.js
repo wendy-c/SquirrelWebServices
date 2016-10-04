@@ -68,6 +68,9 @@ class HomeContainer extends React.Component {
     .then((data) => {
       if(owner === this.state.user.fbid) {
         console.log('updating yolo')
+        axios.get('http://localhost:8367').then(function(data){
+          console.log('Message received',data);
+        })
         axios.get('http://wwww.localhost:8888/links/' + this.state.user.fbid)
         .then((links) => {
           this.setState({articles: links.data[0]}, ()=>{
