@@ -1,21 +1,18 @@
 import React from 'react';
+import FriendDropDownContainer from './friendDropDown/friendDropDownContainer';
+
+const friends = [{name: 'Friends', id: '0'},{name: 'Damien', id: '1'}, {name: 'Wendy', id: '2'}, {name: 'Jordan', id: '3'}];
 
 const InputBarPresentational = (props) => {
+  console.log(props.friends, 'which one is this');
   return (
     <div className="row search">
       <div className=" small-12 columns">
         <div className="row collapse">
           <div className="small-12 large-12  columns ">
             <div className=" keyword">
-              <a data-dropdown="drop3">
-                Friends 
-                <div className="arrow-down"></div>
-              </a>
-              <ul id="drop3" className="f-dropdown content" data-dropdown-content style={{'position': 'absolute',  'left': '-99999px'}}>
-                <li><a href="">Friend 1</a></li>
-                <li><a href="">Friend 2</a></li>
-                <li><a href="">Friend 3</a></li>
-              </ul>
+             <FriendDropDownContainer setOwner={props.setOwner} friends={props.friends} selected={friends[0]}/>
+              
             </div>
               <form className='inputfield' onSubmit={props.onSubmit}>
               <input id='inputClear' onChange={props.onChange} type="text" className="search-field" placeholder="Stash your acorns here "/>

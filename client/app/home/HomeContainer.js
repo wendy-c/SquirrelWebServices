@@ -13,7 +13,7 @@ class HomeContainer extends React.Component {
       user: '',
       articles: '',
       userArticles: [],
-      userFriendsList: [],
+      userFriendsList: [{fbid: '0', fbname: 'Friends'}],
       articlesFromFriends: [],
     };
   }
@@ -23,15 +23,22 @@ class HomeContainer extends React.Component {
     axios.get('/checkAuth')
     .then((user)=>{
       this.setState({user: user.data})
-      return axios.get('http://wwww.localhost:8888/links/' + user.data.fbid)
+      return axios.get('http://wwww.localhost:8888/links/' + user.data.fbid);
     })
     .then((links) => {
-      console.log(this.state.user, 'working here?');
       console.log(links, 'links links links');
       this.setState({articles: links.data[0]}, ()=>{
         this.sortArticles();
       });
+      return axios.get('http://wwww.localhost:8888/friends/nameonly/' + this.state.user.fbid);
     })
+    .then((friends) => {
+      console.log(friends.data, 'friends.data');
+      var updatedFriends = this.state.userFriendsList.slice();
+      updatedFriends[0].fbid = this.state.user.fbid;
+      updatedFriends = updatedFriends.concat(friends.data);
+      this.setState({userFriendsList: updatedFriends});
+    })  
     .catch((err)=> {
       console.log(err)
     })
@@ -68,9 +75,14 @@ class HomeContainer extends React.Component {
     .then((data) => {
       if(owner === this.state.user.fbid) {
         console.log('updating yolo')
-        axios.get('http://localhost:8367').then(function(data){
-          console.log('Message received',data);
+
+        axios.get('http://localhost:8367').then((data) => {
+          console.log('Message Recieved', data);
         })
+        .catch((err) => {
+          console.log('get request to 8367 err');
+        })
+        
         axios.get('http://wwww.localhost:8888/links/' + this.state.user.fbid)
         .then((links) => {
           this.setState({articles: links.data[0]}, ()=>{
@@ -92,7 +104,7 @@ class HomeContainer extends React.Component {
     return (
     <div style={{'height': '100%', 'width': '100%'}}>
       <HomePresentational >
-        <InputBarContainer handleUpdateInbox={this.handleUpdateInbox.bind(this)} userId={this.state.user}/>
+        <InputBarContainer friends={this.state.userFriendsList} handleUpdateInbox={this.handleUpdateInbox.bind(this)} userId={this.state.user}/>
         <div className='row inboxmain'>
           <div className='col s8 grey lighten-5'>
             <Scrollbars style={{ height: 600 }}>
