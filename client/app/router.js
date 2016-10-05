@@ -29,9 +29,9 @@ const validate = function(nextState, replace, callback) {
 const routes = (
   <Router history={hashHistory}>
     <Route path='/' component={NavBarContainer}>
-      <IndexRoute component={HomeContainer} onEnter={validate}/>
-      <Route path='login' component={LoginContainer} />
-      <Route path='friends' component={FriendContainer} onEnter={validate}/>
+      <IndexRoute component={LoginContainer}/>
+      <Route path='home' component={HomeContainer} />
+      <Route path='friends' component={FriendContainer} />
     </Route>
   </Router>
   );

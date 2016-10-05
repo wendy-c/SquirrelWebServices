@@ -35,7 +35,9 @@ app.use(passport.session());
 passportConfig(passport);
 //API ROUTES 
 app.get('/auth/facebook', passport.authenticate('facebook'));
-
+app.post('/login2',
+  passport.authenticate('local', { successRedirect: '/#/home',
+                                   failureRedirect: '/' }));
 //check to see req session?
 app.get('/checkAuth', function(req, res){
   res.send(req.user);
