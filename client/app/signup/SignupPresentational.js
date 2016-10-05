@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 
-const LoginPresentational = (props) => {
+const SignUpPresentational = (props) => {
   return (
     <div>
       <div>
-        <h3 className="header">Save Articles, Read Offline, Share with Friends</h3>
+        <br />
         <br />
         <br />
         <img className="bk-image" src="styles/img/background-wood.png"/>
@@ -36,16 +36,4 @@ const LoginPresentational = (props) => {
     );
 };
 
-export default LoginPresentational;
-
-        // <h3 className="header">Save Articles, Read Offline, Share with Friends</h3>
-// <div className="row center">
-//             <a href='/auth/facebook' className="loginBtn loginBtn--facebook">
-//               Login with Facebook
-//             </a>
-//           </div>
-//           <div className="row center">
-//             <a className="loginBtn loginBtn--twitter">
-//                Login with Twitter
-//             </a>
-//           </div>
+export default SignUpPresentational;

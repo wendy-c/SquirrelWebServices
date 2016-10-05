@@ -35,9 +35,12 @@ app.use(passport.session());
 passportConfig(passport);
 //API ROUTES 
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.post('/login2',
-  passport.authenticate('local', { successRedirect: '/#/home',
-                                   failureRedirect: '/' }));
+
+app.post('/login2', passport.authenticate('local', { successRedirect: '/#/home',
+                                                     failureRedirect: '/' }));
+
+app.post('/signup', passport.authenticate('local', { successRedirect: '/#/home',
+                                                     failureRedirect: '/signup' }));
 //check to see req session?
 app.get('/checkAuth', function(req, res){
   res.send(req.user);
