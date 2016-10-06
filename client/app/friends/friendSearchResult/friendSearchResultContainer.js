@@ -8,20 +8,6 @@ class FriendSearchResultContainer extends React.Component {
     this.state = {
 
     };
-    this.addFriend = this.addFriend.bind(this);
-  }
-
-  //put friend to db
-  addFriend(friendId) {
-    console.log('are you getting friendId', this.props.user.fbid);
-    axios.put('http://localhost:8888/friends/' + this.props.user.fbid, {friend: friendId})
-      .then((res) => {
-        console.log('you have successfully added this person to the stalking list');
-        //re-render friend's list with new person
-      })
-      .catch((err) => {
-        console.log('There is an error in FriendSearchResultContainer, it\'s a sad day! D=', err);
-      });
   }
 
   render() {
@@ -32,7 +18,7 @@ class FriendSearchResultContainer extends React.Component {
       {this.props.result.map((item, idx) => {
         return (
           <div>
-          <FriendSearchResultPresentational key={idx} user={item} addFriend={this.addFriend}/>
+          <FriendSearchResultPresentational key={idx} user={item} addFriend={this.props.addFriend}/>
           </div>
           );
       })}

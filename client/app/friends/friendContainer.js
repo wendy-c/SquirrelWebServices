@@ -20,6 +20,7 @@ class FriendContainer extends React.Component {
     };
     this.updateFriendArticles = this.updateFriendArticles.bind(this);
     this.updateToSearchResult = this.updateToSearchResult.bind(this);
+    this.addFriend = this.addFriend.bind(this);
   }
 
   componentWillMount() {
@@ -48,7 +49,6 @@ class FriendContainer extends React.Component {
       .catch((err) => {
         console.log('There is an error in friendContainer getting user, it\'s a sad day D=', err);
       });
-
   }
 
   updateFriendArticles(friend) {
@@ -68,19 +68,39 @@ class FriendContainer extends React.Component {
     });
   }
 
+  //put friend to db, passing down to friendSearchResult
+  addFriend(friend) {
+    axios.put('http://localhost:8888/friends/' + this.state.user.fbid, {friend: friend.fbid})
+      .then((res) => {
+        console.log('you have successfully added this person to the stalking list');
+        //re-render friend's list with new person
+        var newfriend = this.state.friends.slice();
+        newfriend.push(friend);
+        this.setState({
+          friends: newfriend
+        });
+
+      })
+      .catch((err) => {
+        console.log('There is an error in FriendSearchResultContainer, it\'s a sad day! D=', err);
+      });
+  }
+
   whichView() {
     if (this.state.searchView) {
       return (
         //searchView
         <div>
           <h5>Result: </h5>
-          <FriendSearchResultContainer user={this.state.user} result={this.state.friendSearchResult}/>
+          <FriendSearchResultContainer user={this.state.user} result={this.state.friendSearchResult} addFriend={this.addFriend}/>
         </div>
       );
     } else {
       if (this.state.selected === '') {
         return (<div></div>);
       } else {
+        //this.state.selected has friend info and links
+        //if it is a new friend, it will not have links property, get request to get links
         return (<FriendArticleListContainer user={this.state.user} friend={this.state.selected}/>);
       }
     }
