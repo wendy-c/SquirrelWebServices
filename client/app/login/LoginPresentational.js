@@ -4,7 +4,7 @@ const LoginPresentational = (props) => {
   return (
     <div>
       <div>
-        <br />
+        
         <h3 className="header">Save Articles, Read Offline, Share with Friends</h3>
         <br />
         <br />

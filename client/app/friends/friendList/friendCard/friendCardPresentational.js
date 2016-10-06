@@ -11,7 +11,7 @@ const FriendCardPresentational = (props) => {
             </div>
             <div className="col s10">
               <span className="black-text">
-                I am {props.name}
+                <h6>{props.name}</h6>
               </span>
             </div>
           </div>
@@ -20,6 +20,14 @@ const FriendCardPresentational = (props) => {
 };
 
 export default FriendCardPresentational;
+
+/* suggestions: maybe add following friend's article previews?
+                <img src="http://i2.cdn.turner.com/cnnnext/dam/assets/161003115141-haddo-madonna-raphael-1-super-169.jpg" alt="blah blah, article title" className="article-thumbnail responsive-img"/>
+                <img src={dummyphoto} alt="blah blah, article title" className="article-thumbnail responsive-img"/>
+                <img src={dummyphoto} alt="blah blah, article title" className="article-thumbnail responsive-img"/>
+                <img src={dummyphoto} alt="blah blah, article title" className="article-thumbnail responsive-img"/>
+                <img src={dummyphoto} alt="blah blah, article title" className="article-thumbnail responsive-img"/>
+                */
 
       // <div class="col s12 m8 offset-m2 l6 offset-l3">
       //   <div class="card-panel grey lighten-5 z-depth-1">
