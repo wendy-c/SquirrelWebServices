@@ -1,15 +1,15 @@
 import React from 'react';
 
-const NavBarPresentationalLoggedOut = (props) => {
+const NavBarPresentationalSignUp = (props) => {
   return (
     <div>
       <nav>
          <div className="nav-wrapper white">
-            <img className="navbar-logo" src="styles/img/flying-squirrel-orange-outline.png"/>
+            <img className="navbar-logo" src="styles/img/flying-squirrel-orange.png"/>
             <a href="#" className="brand-logo">Squirrel.io</a>
 
             <ul id="nav-mobile" className="right hide-on-med-and-down">
-             <li><a style={{color: 'grey'}} href="#/signup">SignUp</a></li>
+             <li><a style={{color: 'grey'}} href="#/login">login</a></li>
            </ul>
          </div>
        </nav>
@@ -17,4 +17,4 @@ const NavBarPresentationalLoggedOut = (props) => {
     );
 }
 
-export default NavBarPresentationalLoggedOut;
+export default NavBarPresentationalSignUp;
