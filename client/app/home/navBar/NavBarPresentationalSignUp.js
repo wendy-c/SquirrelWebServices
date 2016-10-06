@@ -9,7 +9,7 @@ const NavBarPresentationalSignUp = (props) => {
             <a href="#" className="brand-logo">Squirrel.io</a>
 
             <ul id="nav-mobile" className="right hide-on-med-and-down">
-             <li><a style={{color: 'grey'}} href="#/login">login</a></li>
+             <li><a style={{color: 'grey'}} href="#/">login</a></li>
            </ul>
          </div>
        </nav>

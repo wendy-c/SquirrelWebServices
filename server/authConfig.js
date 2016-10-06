@@ -48,6 +48,7 @@ module.exports.passportConfig = function(passport){
   },
     function(accessToken, refreshToken, profile, done) {
       console.log(profile.photos[0].value, 'what is this thing?');
+      const endpointID = '/' + profile.id;
       var apiFields = options(profile.id, profile.displayName, profile.photos[0].value, 'login');
 
       rp(apiFields) //<===== server-side http request

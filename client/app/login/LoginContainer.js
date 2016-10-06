@@ -9,7 +9,7 @@ class LoginContainer extends React.Component {
     this.state = {
       username: '',
       password: '',
-      message: 'please login',
+      message: ' ',
     }
   }
 
@@ -26,7 +26,7 @@ class LoginContainer extends React.Component {
     })
     .catch((err) => {
       console.log(err, 'error')
-      this.setState({message: 'Incorrect password. Try Again.'})
+      this.setState({message: 'Incorrect username or password. Please try Again.'})
     })
 
     document.getElementById('loginform').reset();

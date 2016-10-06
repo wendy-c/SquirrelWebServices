@@ -9,7 +9,7 @@ class SignUpContainer extends React.Component {
     this.state = {
       username: '',
       password: '',
-      message: 'please choose a username and pasword',
+      message: 'please choose a username and password',
     }
   }
 
