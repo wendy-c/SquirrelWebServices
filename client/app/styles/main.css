@@ -46,6 +46,10 @@ body {
   justify-content: space-around;
 }
 
+.userinbox_header {
+  width: 100%;
+}
+
 .userinboxarticles {
   display: flex;
   flex-direction: row;
@@ -78,59 +82,63 @@ body {
   width: 48%;
 }
 
-/*.article:hover{
-  height: 225px;
-  width: 300px;
-  z-index: 10;
-}*/
 
-.inputfield {
+
+.inputcontainer{
   display: flex;
   flex-direction: row;
-}
-
-/*login button */
-.buttoncontainer{
-  position: absolute;
-  top: 30%;
-  left: 40%;
-}
-
-.downloadBtn {
-  box-sizing: border-box;
-  position: relative;
-  background-color: #4db6ac;
-  margin: 0.2em;
-  padding: 0 15px 0 15px;
-  border: 2px solid #4db6ac;
-  text-align: center;
-  height: 5em;
+  width: 98%;
+  justify-content: center;
+  border: 1px solid #bdbdbd;
   border-radius: 0.2em;
-  font-size: 16px;
-  color: #fff;
-  padding-bottom: 5px;
-  padding-top: 5px;
+  margin-bottom: 0.5%;
+  margin-left: 1%;
+  /*background-color: ;*/
 }
 
-.downloadBtn:active {
-  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+.dropdown {
+  /*position: relative;*/
+  /*padding-left: 15%;*/
+  padding-top: 1.7%;
+  width: 15%;
+
+}
+
+.inputfieldcontainer {
+  /*position: relative;*/
+  padding-left: 1%;
+  width: 60%;
+  padding-top: 1%;
 }
 
 .stashBtn {
   box-sizing: border-box;
   position: relative;
-  /* width: 13em;  - apply for fixed size */
+  width: 30%;
   background-color: white;
-  margin: 0.2em;
-  padding: 0 15px 0 15px;
-  border: 1px solid #4db6ac;
+  /*margin: 0.9em, 0em, 0.9em, 0em;*/
+  /*padding:  0px 15px 0 15px;*/
+  padding-left: 5px;
+  border: 1px solid #bdbdbd;
   text-align: center;
-  height: 45px;
+  height: 35px;
   border-radius: 0.2em;
   font-size: 16px;
   color: #4db6ac;
   padding-bottom: 5px;
   padding-top: 5px;
+  margin-top: 1%;
+  margin-left: 1%;
+}
+
+.stashBtn:hover{
+  background-color: #fafafa;
+}
+
+.inputfield {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 /* Shared */
@@ -457,11 +465,6 @@ body {
   flex-direction: column;
 }
 
-.downloadBtn-logo {
-  height: 50%;
-  text-align: left;
-}
-
 .bk-image {
   margin-top: 1em;
   width: 100%;
@@ -470,6 +473,8 @@ body {
 .header {
   color: #212121;
   text-align: center;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .sub-head {
@@ -480,7 +485,7 @@ body {
 .buttoncontainer{
   position: absolute;
   top: 40%;
-  left: 40%;
+  left: 33%;
 }
 
 .article_from_friend_card {
@@ -557,6 +562,24 @@ body {
   left: 83%;
 }
 
-.article-thumbnail {
-  width: 20%;
+/*==== new login signup box*/
+.input-field input[type=date]:focus + label,
+    .input-field input[type=text]:focus + label,
+    .input-field input[type=email]:focus + label,
+    .input-field input[type=password]:focus + label {
+      color: #e91e63;
+    }
+
+    .input-field input[type=date]:focus,
+    .input-field input[type=text]:focus,
+    .input-field input[type=email]:focus,
+    .input-field input[type=password]:focus {
+      border-bottom: 2px solid #e91e63;
+      box-shadow: none;
+    }
+
+.signupbox {
+  left: 30%;
+  position: relative;
+  width: 40%;
 }
