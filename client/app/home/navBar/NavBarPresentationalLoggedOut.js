@@ -5,7 +5,7 @@ const NavBarPresentationalLoggedOut = (props) => {
     <div>
       <nav>
          <div className="nav-wrapper white">
-            <img className="navbar-logo" src="styles/img/flying-squirrel-orange-outline.png"/>
+            <img className="navbar-logo" src="styles/img/flying-squirrel-orange.png"/>
             <a href="#" className="brand-logo">Squirrel.io</a>
 
             <ul id="nav-mobile" className="right hide-on-med-and-down">

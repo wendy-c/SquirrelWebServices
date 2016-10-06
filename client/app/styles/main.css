@@ -83,26 +83,32 @@ body {
 }
 
 
+
 .inputcontainer{
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 98%;
   justify-content: center;
   border: 1px solid #bdbdbd;
   border-radius: 0.2em;
+  margin-bottom: 0.5%;
+  margin-left: 1%;
+  /*background-color: ;*/
 }
 
 .dropdown {
   /*position: relative;*/
   /*padding-left: 15%;*/
-  padding-top: 0.7%;
+  padding-top: 1.7%;
   width: 15%;
+
 }
 
 .inputfieldcontainer {
   /*position: relative;*/
   padding-left: 1%;
   width: 60%;
+  padding-top: 1%;
 }
 
 .stashBtn {
@@ -126,7 +132,7 @@ body {
 }
 
 .stashBtn:hover{
-  background-color: #f5f5f5;
+  background-color: #fafafa;
 }
 
 .inputfield {
@@ -459,11 +465,6 @@ body {
   flex-direction: column;
 }
 
-.downloadBtn-logo {
-  height: 50%;
-  text-align: left;
-}
-
 .bk-image {
   margin-top: 1em;
   width: 100%;
@@ -472,6 +473,8 @@ body {
 .header {
   color: #212121;
   text-align: center;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .sub-head {
@@ -482,7 +485,7 @@ body {
 .buttoncontainer{
   position: absolute;
   top: 40%;
-  left: 40%;
+  left: 33%;
 }
 
 .article_from_friend_card {
@@ -559,6 +562,24 @@ body {
   left: 83%;
 }
 
-.article-thumbnail {
-  width: 20%;
+/*==== new login signup box*/
+.input-field input[type=date]:focus + label,
+    .input-field input[type=text]:focus + label,
+    .input-field input[type=email]:focus + label,
+    .input-field input[type=password]:focus + label {
+      color: #e91e63;
+    }
+
+    .input-field input[type=date]:focus,
+    .input-field input[type=text]:focus,
+    .input-field input[type=email]:focus,
+    .input-field input[type=password]:focus {
+      border-bottom: 2px solid #e91e63;
+      box-shadow: none;
+    }
+
+.signupbox {
+  left: 30%;
+  position: relative;
+  width: 40%;
 }
