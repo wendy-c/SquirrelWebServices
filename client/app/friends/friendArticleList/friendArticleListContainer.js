@@ -7,22 +7,59 @@ class FriendArticleListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
- 
+      links: []
     };
   }
 
+  componentWillMount() {
+    var friendId = this.props.friend.fbid;
+    console.log('am i getting friend fbid', friendId);
+    axios.get('http://localhost:8888/links/friends/' + friendId)
+      .then((res) => {
+        console.log('what is res in FriendArticleListContainer', res)
+        this.setState({
+          links: res.data
+        }, function() {
+          console.log('done setting state');
+        });
+      })
+      .catch((err) => {
+        console.log('There is an error in FriendArticleListContainer, it\'s a sad day! D=');
+      });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    //get selected friend's links
+    console.log('FriendArticleListContainer', this.props.friend.links);
+    var friendId = this.props.friend.fbid;
+    console.log('am i getting friend fbid', friendId);
+    axios.get('http://localhost:8888/links/friends/' + friendId)
+      .then((res) => {
+        console.log('what is res in FriendArticleListContainer', res);
+        this.setState({
+          links: res.data
+        }, function() {
+          console.log('done setting state');
+        });
+      })
+      .catch((err) => {
+        console.log('There is an error in FriendArticleListContainer, it\'s a sad day! D=');
+      });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    //fix this later
+    return true;
+  }
 
   render() {
-    // console.log('i am in FriendArticleListContainer>>>>>', this.state);
+    console.log('i am in FriendArticleListContainer>>>>>', this.state);
     // const articles = [];
-    const articles = this.props.friend.links.map((article, idx) => {
+    const articles = this.state.links.map((article, idx) => {
       if (article.assignee === article.owner) {
         return (<ArticleInfoWindowContainer url={article.url} key={idx}/>);
       }
     });
-    // for(var i = 0; i < 10; i ++){
-    //   articles.push(<ArticleInfoWindowContainer key={i}/>)
-    // }
     return (
       <FriendArticleListPresentational friend={this.props.friend}>
         {articles}

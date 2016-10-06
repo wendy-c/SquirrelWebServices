@@ -8,15 +8,15 @@ const NavBarPresentational = (props) => {
          <img className="navbar-logo" src="./styles/img/flying-squirrel.png"/>
            <a href="#" className="brand-logo">Squirrel.io</a>
 
-           <ul id="nav-mobile" className="right hide-on-med-and-down">
+           <ul id="nav-mobile" className="right">
              <li><a href="/">Home</a></li>
-             <li><a href="#/friends">Friends</a></li>
+             <li><a href="#/friends">Following</a></li>
              <li><a href="/logout">Log Out</a></li>
            </ul>
          </div>
        </nav>
     </div>
     );
-}
+};
 
 export default NavBarPresentational;

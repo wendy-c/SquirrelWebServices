@@ -36,7 +36,7 @@ const SignUpPresentational = (props) => {
                   </div>
                   <center>
                     <div className='row'>
-                      <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect teal lighten-2'>Login</button>
+                      <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect teal lighten-2'>SIGNUP</button>
                       <br/>
                       <p style={{fontSize: '12px'}} className='grey-text'>{props.message}</p>
                     </div>
