@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import LoginPresentational from './LoginPresentational';
 import LoginTrendingPresentational from './LoginTrendingPresentational';
 import axios from 'axios';
+import Modal from 'react-modal';
 
 
 class LoginContainer extends React.Component {
@@ -12,9 +13,13 @@ class LoginContainer extends React.Component {
       password: '',
       message: 'please enter username and password', 
       articles: [],
+      modalIsOpen: false
     };
 
     this.getLandingArticles = this.getLandingArticles.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentWillMount() {
@@ -63,44 +68,45 @@ class LoginContainer extends React.Component {
       });
   }
 
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal() {
+
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
   render() {
     console.log('what is this.state.articles in login>>>>>>', this.state.articles);
-    var mappedFirstHalf = [];
-    var mappedSecondHalf = []; 
-    var all = this.state.articles.map((item, index) => {
-      // if (index < 10) {
-      //   mappedFirstHalf.push(<LoginTrendingPresentational article={item}/>);
-      // } else {
-      //   mappedSecondHalf.push(<LoginTrendingPresentational article={item}/>);
-      // }
-
-      return (<LoginTrendingPresentational article={item}/>);
+    var mappedArticles = this.state.articles.map((item, index) => {
+      return (<LoginTrendingPresentational article={item} key={index} modalIsOpen={this.state.modalIsOpen}/>);
     });
 
     return (
       <div>
 
-          <div className="parallax-container">
+          <div onClick={this.openModal}>
             <div className="row">
               <div className="col s12 m6 parallax" className='landing-container'>
-                {all}
+                {mappedArticles}
               </div>
             </div>
           </div>
-        <div className="section white">
-          <div className="row container">
-            <h2 className="squirrel-header">Squirrel</h2>
-            <p className="squirrel-subhead">Save, Read, Share</p>
-            <LoginPresentational message={this.state.message} getRefUsername={this.getRefUsername.bind(this)} getRefPassword={this.getRefPassword.bind(this)} handleSubmit={this.handleSubmit.bind(this)}/>
-          </div>
-        </div>
-          <div className="parallax-container">
-            <div className="row">
-              <div className="col s12 m6 parallax" className='landing-container'>
-                {all}
-              </div>
+        <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal} onRequestClose={this.closeModal} className="npm-modal-default">
+          <div className="popup">
+            <div className="row container">
+            <p className="exit" onClick={this.closeModal}>Close</p>
+              <h2 className="squirrel-header">Squirrel</h2>
+              <p className="squirrel-subhead">Save, Read, Share</p>
+              <LoginPresentational message={this.state.message} getRefUsername={this.getRefUsername.bind(this)} getRefPassword={this.getRefPassword.bind(this)} handleSubmit={this.handleSubmit.bind(this)}/>
             </div>
           </div>
+        </Modal>
+
       </div>
     );
   }

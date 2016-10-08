@@ -7,7 +7,7 @@ const LoginTrendingPresentational = (props) => {
     backgroundImage: 'url(' + image + ')',
   };
 
-  const test = () => {console.log('clicked on after image')};
+  var afterClass = props.modalIsOpen ? '' : 'after';
 
   return (
     <div className="landingWrapper">
@@ -16,7 +16,7 @@ const LoginTrendingPresentational = (props) => {
           <div style={divStyle} className='landingImage'/>
         </div>
       </div>
-      <div onClick={test} className="after">
+      <div className={afterClass}>
         <span>{props.article.title}</span>
           By <a href="#">{props.article.author}</a>
       </div>
