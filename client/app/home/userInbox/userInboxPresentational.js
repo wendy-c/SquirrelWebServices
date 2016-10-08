@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'; 
 import ArticleInfoWindowContainer from '../articleInfoWindow/articleInfoWindowContainer';
 
 const UserInboxPresentational = (props) => {
   return (
     <div className='userinbox'>
       <div className='userinbox_header'>
-        <h5>User Inbox Stuff</h5>
+        <h5 className="h5-head">your stash</h5>
       </div>
       <div>
         <div className="row">

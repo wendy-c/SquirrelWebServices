@@ -11,7 +11,7 @@ const LoginPresentational = (props) => {
               <div className="section"></div>
 
               <div className="container">
-                <div className="z-depth-1 grey lighten-4 row" style={{display: 'inline-block', padding: '32px 48px 0px 48px', border: '1px solid #EEE'}}>
+                <div className="loginWidth" className="z-depth-1 grey lighten-4 row" style={{display: 'inline-block', padding: '32px 48px 0px 48px', border: '1px solid #EEE'}}>
 
                   <form id='loginform' onSubmit={props.handleSubmit} className="col s12">
                     <div className='row'>

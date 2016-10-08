@@ -56,7 +56,7 @@ class NavBarContainer extends React.Component {
       <div className='navbar class="card-panel'>
         {whichNavBar}
       </div>
-      <div className='navbarchildren valign-wrapper'>
+      <div className='navbarchildren'>
         {this.props.children}
       </div>
     </div>
