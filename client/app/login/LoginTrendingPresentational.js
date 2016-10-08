@@ -8,9 +8,10 @@ const LoginTrendingPresentational = (props) => {
   };
 
   var afterClass = props.modalIsOpen ? '' : 'after';
+  var random = Math.round(Math.random() * 10);
 
-  return (
-    <div className="landingWrapper">
+  var imageDiv = random % 2 === 0 ? 
+  (<div className="landingWrapper">
       <div className="shadowDepth1">
         <div className="card__image border-tlr-radius">
           <div style={divStyle} className='landingImage'/>
@@ -20,7 +21,24 @@ const LoginTrendingPresentational = (props) => {
         <span>{props.article.title}</span>
           By <a href="#">{props.article.author}</a>
       </div>
-    </div>
+    </div>)
+
+  :
+
+  (<div className="landingWrapper2">
+      <div className="shadowDepth1">
+        <div className="card__image border-tlr-radius">
+          <div style={divStyle} className='landingImage'/>
+        </div>
+      </div>
+      <div className={afterClass}>
+        <span>{props.article.title}</span>
+          By <a href="#">{props.article.author}</a>
+      </div>
+    </div>)
+
+  return (
+    <div>{imageDiv}</div>
   );
 };
 

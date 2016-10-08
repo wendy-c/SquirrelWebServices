@@ -83,7 +83,7 @@ class LoginContainer extends React.Component {
   render() {
     console.log('what is this.state.articles in login>>>>>>', this.state.articles);
     var mappedArticles = this.state.articles.map((item, index) => {
-      return (<LoginTrendingPresentational article={item} key={index} modalIsOpen={this.state.modalIsOpen}/>);
+      return (<LoginTrendingPresentational article={item} key={index} index={index} modalIsOpen={this.state.modalIsOpen}/>);
     });
 
     return (
