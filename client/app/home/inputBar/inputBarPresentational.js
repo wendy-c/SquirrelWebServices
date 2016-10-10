@@ -4,7 +4,7 @@ import FriendDropDownContainer from './friendDropDown/friendDropDownContainer';
 const friends = [{name: 'Friends', id: '0'},{name: 'Damien', id: '1'}, {name: 'Wendy', id: '2'}, {name: 'Jordan', id: '3'}];
 
 const InputBarPresentational = (props) => {
-  console.log(props.friends, 'which one is this');
+  // console.log(props.friends, 'which one is this');
   return (
           <div className="inputcontainer">
             <div className="dropdown">

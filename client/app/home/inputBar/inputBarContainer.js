@@ -23,7 +23,7 @@ class InputBarContainer extends React.Component {
   }
 
   shouldComponentUpdate(props, state){
-    console.log(state, 'what\'s in next state' )
+    // console.log(state, 'what\'s in next state' )
     return true;
   }
 

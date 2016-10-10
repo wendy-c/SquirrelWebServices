@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const LoginPresentational = (props) => {
+  console.log('props in LoginPresentational>>>>>>', props);
     return (
       <div className='signupbox'>
         <main>

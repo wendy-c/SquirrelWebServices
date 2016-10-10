@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import {connect} from 'react-redux';
 
 const LoginTrendingPresentational = (props) => {
   // console.log('what is props in LoginTrendingPresentational>>>>>>>>>>', props);
@@ -35,11 +36,17 @@ const LoginTrendingPresentational = (props) => {
         <span>{props.article.title}</span>
           By <a href="#">{props.article.author}</a>
       </div>
-    </div>)
+    </div>);
 
   return (
     <div>{imageDiv}</div>
   );
 };
 
-export default LoginTrendingPresentational;
+function mapStateToProps(state) {
+  return {
+    modalIsOpen: state.login.modalIsOpen
+  };
+}
+
+export default connect(mapStateToProps)(LoginTrendingPresentational);

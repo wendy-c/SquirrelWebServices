@@ -1,3 +1,10 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 html {
   height: 100%;
   margin: 0px;
@@ -210,6 +217,7 @@ body {
   background-image: linear-gradient(#36A2C9, #ffccbc);
   cursor: pointer;
 }
+
 
 /* -- INFO CARD -- */
 
@@ -614,7 +622,7 @@ body {
   justify-content: center;
   align-content: center;
   box-sizing: border-box;
-  width: 100%;
+  width: 90%;
   background-color: #4db6ac;
   /*margin: 0.9em, 0em, 0.9em, 0em;*/
   padding:  0 15px 0 15px;
@@ -632,3 +640,139 @@ body {
   background-color: #fafafa;
 }
 
+.h5-head {
+  font-weight: bold;
+  color: #9e9e9e;
+}
+
+.loginWidth {
+  width: 100%;
+}
+
+.squirrel-header {
+  text-align: center;
+  font-family: 'Shrikhand', cursive;
+  color: #e64a19;
+}
+
+.squirrel-subhead {
+  text-align: center;
+  color: #e64a19;
+  font-size: 18px;
+}
+
+
+/* -- LANDING INFO CARD -- */
+.landingWrapper {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.landingWrapper2 {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.landingWrapper > .after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 150px;
+  height: 100;
+  opacity: 0;
+  color: #fff;
+  z-index: 1;
+/*  display: none;
+  visibility: hidden;*/
+}
+
+.landingWrapper2 > .after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  opacity: 0;
+  color: #fff;
+  z-index: 1;
+/*  display: none;
+  visibility: hidden;*/
+}
+
+.landingWrapper:hover > .after {
+/*.landingWrapper > .after:hover{*/
+/*  display: block;*/
+  background: rgba(0, 0, 0, .6);
+/*  visibility: visible;*/
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10%;
+  z-index: 1;
+  /*opacity: 0.5;*/
+  /*transform: scale(1.15);*/
+}
+
+.landingWrapper2:hover > .after {
+/*.landingWrapper > .after:hover{*/
+/*  display: block;*/
+  background: rgba(0, 0, 0, .6);
+/*  visibility: visible;*/
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10%;
+  z-index: 1;
+  /*opacity: 0.5;*/
+  /*transform: scale(1.15);*/
+}
+
+.landingImage {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.9;
+}
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  bottom: 0;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+
+.npm-modal-default {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 50%;
+}
+
+.exit {
+  position: absolute;
+  right:10%;
+  top: 10%;
+  font-size: 24px;
+  font-weight: bold;
+  color: grey;
+}
