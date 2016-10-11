@@ -23,14 +23,19 @@ const SignUpPresentational = (props) => {
                   <div className='row'>
                     <div className='input-field col s12'>
                       <input onChange={props.getRefUsername} className='validate' type='text' name='text' id='text' />
-                      <label htmlFor='text'>Enter your username</label>
+                      <label htmlFor='text'>Create a username</label>
                     </div>
                   </div>
 
                   <div className='row'>
                     <div className='input-field col s12'>
                       <input onChange={props.getRefPassword} className='validate' type='password' name='password' id='password' />
-                      <label htmlFor='password'>Enter your password</label>
+                      <label htmlFor='password'>Create a password</label>
+                      <br/>
+                    </div>
+                    <div className='input-field col s12'>
+                      <input onChange={props.getRefConfirmPassword} className='validate' type='password' name='confirmPassword' id='password' />
+                      <label htmlFor='password'>Confirm password</label>
                       <br/>
                     </div>
                   </div>

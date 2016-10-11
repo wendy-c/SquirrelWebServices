@@ -3,6 +3,7 @@ import HomePresentational from './HomePresentational';
 import FriendInboxContainer from './friendInbox/friendInboxContainer';
 import UserInboxContainer from './userInbox/userInboxContainer';
 import InputBarContainer from './inputBar/inputBarContainer';
+import RecommendationContainer from './recommendation/recommendationContainer';
 import axios from 'axios';
 import { Scrollbars } from 'react-custom-scrollbars';
 
@@ -22,7 +23,7 @@ class HomeContainer extends React.Component {
   //get user name and id
     axios.get('/checkAuth')
     .then((user)=>{
-      this.setState({user: user.data})
+      this.setState({user: user.data});
       return axios.get('/links/' + user.data.fbid);
     })
     .then((links) => {
@@ -40,8 +41,8 @@ class HomeContainer extends React.Component {
       this.setState({userFriendsList: updatedFriends});
     })  
     .catch((err)=> {
-      console.log(err)
-    })
+      console.log(err);
+    });
   }
 
   shouldComponentUpdate(state, props){
@@ -71,10 +72,10 @@ class HomeContainer extends React.Component {
   }
 
   handleUpdateInbox(url, owner, assignee) {
-    axios.put(`links/friends/${owner}/${assignee}`, {link: url})
+    axios.put(`/links/friends/${owner}/${assignee}`, {link: url})
     .then((data) => {
-      if(owner === this.state.user.fbid) {
-        console.log('updating yolo')
+      if (owner === this.state.user.fbid) {
+        console.log('updating yolo');
         //WHAT IS THIS THING HERE?
         // axios.get('http://localhost:8367').then((data) => {
         //   console.log('Message Recieved', data);
@@ -90,21 +91,23 @@ class HomeContainer extends React.Component {
           });
         })
         .catch((err)=> {
-          console.log(err)
+          console.log(err);
         });
       }
     })
     .catch((err) => {
       console.log('error in inputBarContainer handleSubmit', err);
-    })
+    });
   }
 
   render() {
-    console.log(this.state.userArticles, 'hello world');
     return (
     <div style={{'height': '100%', 'width': '100%'}}>
       <HomePresentational >
         <InputBarContainer friends={this.state.userFriendsList} handleUpdateInbox={this.handleUpdateInbox.bind(this)} userId={this.state.user}/>
+        <div className="col s12">
+          <RecommendationContainer/>
+        </div>
         <div className='row inboxmain'>
           <div className='col s8 grey lighten-5'>
             <Scrollbars style={{ height: 600 }}>
@@ -117,7 +120,7 @@ class HomeContainer extends React.Component {
             </Scrollbars>
           </div>
         </div>
-      </HomePresentational>
+      </HomePresentational> 
     </div>
     );
   }
