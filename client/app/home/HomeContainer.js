@@ -71,6 +71,17 @@ class HomeContainer extends React.Component {
   }
 
   handleUpdateInbox(url, owner, assignee) {
+
+    //post to recommendation server
+    axios.post(`/rec/links/${owner}`, {link: url})
+      .then((res) => {
+        console.log('Article sent to recommendation server');
+      })
+      .catch((err) => {
+        console.log('There is an error sending url to recommendation server! D=', err);
+      });
+
+    //post to database
     axios.put(`http://localhost:8888/links/friends/${owner}/${assignee}`, {link: url})
     .then((data) => {
       if(owner === this.state.user.fbid) {
@@ -78,6 +89,8 @@ class HomeContainer extends React.Component {
 
         axios.get('http://localhost:8367').then((data) => {
           console.log('Message Recieved', data);
+
+
         })
         .catch((err) => {
           console.log('get request to 8367 err');

@@ -10,7 +10,7 @@ const NavBarPresentationalLoggedOut = (props) => {
 
             <ul id="nav-mobile" className="right navbarLand">
              <li><a style={{color: 'grey'}} href="#/signup">SignUp</a></li>
-             <li><a href="http://www.filedropper.com/squirrel"><button className="downloadBtn">DOWNLOAD APP ON MAC</button></a></li>
+             <li><a href="http://www.filedropper.com/squirrel"><button className="downloadBtn">DOWNLOAD MAC APP</button></a></li>
            </ul>
          </div>
        </nav>

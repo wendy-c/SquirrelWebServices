@@ -63,15 +63,19 @@ app.get('/searchFriend', function(req, res) {
 //crawl article
 
 app.post('/getUrlInfo', function(req, res) {
-  //get request to url
-
-
   //make call to readibility
   request('https://readability.com/api/content/v1/parser?url=' + req.body.url + '/&token=ea069fd819bb249c3f5a3b38bbd39b3622ab1ea9', function(req, rs) {
     // console.log('readability GIVE ME INFO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', rs);
     res.send(rs);   
   });
 });
+// //post new added articles to recommendation server
+// app.post('/rec/links/:userid', function(req, res) {
+//   // console.log('req.body in rec/links>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', req.body);
+//   request.post('http://localhost:3121/rec/links/' + req.params.userid, {link: req.body.link}, function(req, res) {
+//     res.send('sent!');
+//   });
+// });
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
@@ -87,7 +91,7 @@ app.get('/auth/twitter/callback',
     failureRedirect: '/login'
   }));
 
-app.get('/logout', function(req, res){
+app.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
