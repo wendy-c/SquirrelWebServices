@@ -24,8 +24,6 @@ class FriendContainer extends React.Component {
   }
 
   componentWillMount() {
-    var context = this;
-    //get user name and id
 
     axios.get('/checkAuth')
       .then((user) => {
@@ -33,7 +31,7 @@ class FriendContainer extends React.Component {
           user: user.data,
         });
         // console.log('who is the user in FriendContainer>>>>', user.data);
-        axios.get('http://wwww.localhost:8888/friends/' + this.state.user.fbid)
+        axios.get('/friends/' + this.state.user.fbid)
           .then((friends) => {
             // console.log('i am in FriendContainer get req =====>>>>>', friends);
             //friends.data = [{fbid:...,fbname:...,links:[...]}, {friend2}]
@@ -42,14 +40,13 @@ class FriendContainer extends React.Component {
             });
           })
           .catch((err) => {
-            console.log('There is an err in friendContainer, it\'s a sad day D=', err);
+            console.log(err);
           });
-
       })
       .catch((err) => {
-        console.log('There is an error in friendContainer getting user, it\'s a sad day D=', err);
+        console.log(err);
       });
-  }
+    }
 
   updateFriendArticles(friend) {
     this.setState({
@@ -70,7 +67,7 @@ class FriendContainer extends React.Component {
 
   //put friend to db, passing down to friendSearchResult
   addFriend(friend) {
-    axios.put('http://localhost:8888/friends/' + this.state.user.fbid, {friend: friend.fbid})
+    axios.put('/friends/' + this.state.user.fbid, {friend: friend.fbid})
       .then((res) => {
         console.log('you have successfully added this person to the stalking list');
         //re-render friend's list with new person

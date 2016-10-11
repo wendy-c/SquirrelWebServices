@@ -23,17 +23,17 @@ class HomeContainer extends React.Component {
     axios.get('/checkAuth')
     .then((user)=>{
       this.setState({user: user.data})
-      return axios.get('http://wwww.localhost:8888/links/' + user.data.fbid);
+      return axios.get('/links/' + user.data.fbid);
     })
     .then((links) => {
-      // console.log(links, 'links links links');
+      console.log(links, 'links links links');
       this.setState({articles: links.data[0]}, ()=>{
         this.sortArticles();
       });
-      return axios.get('http://wwww.localhost:8888/friends/nameonly/' + this.state.user.fbid);
+      return axios.get('/friends/nameonly/' + this.state.user.fbid);
     })
     .then((friends) => {
-      // console.log(friends.data, 'friends.data');
+      console.log(friends.data, 'friends.data');
       var updatedFriends = this.state.userFriendsList.slice();
       updatedFriends[0].fbid = this.state.user.fbid;
       updatedFriends = updatedFriends.concat(friends.data);
@@ -63,7 +63,7 @@ class HomeContainer extends React.Component {
       }).map((item) => {
         return {assignee: item.assignee, url: item.url, createdAt: item.createdAt};
       });
-      // console.log(userArticles, articlesFromFriends, 'im here');
+      console.log(userArticles, articlesFromFriends, 'im here');
     this.setState({
       userArticles: userArticles,
       articlesFromFriends: articlesFromFriends, 
@@ -71,32 +71,19 @@ class HomeContainer extends React.Component {
   }
 
   handleUpdateInbox(url, owner, assignee) {
-
-    //post to recommendation server
-    axios.post(`/rec/links/${owner}`, {link: url})
-      .then((res) => {
-        console.log('Article sent to recommendation server');
-      })
-      .catch((err) => {
-        console.log('There is an error sending url to recommendation server! D=', err);
-      });
-
-    //post to database
-    axios.put(`http://localhost:8888/links/friends/${owner}/${assignee}`, {link: url})
+    axios.put(`links/friends/${owner}/${assignee}`, {link: url})
     .then((data) => {
       if(owner === this.state.user.fbid) {
         console.log('updating yolo')
-
-        axios.get('http://localhost:8367').then((data) => {
-          console.log('Message Recieved', data);
-
-
-        })
-        .catch((err) => {
-          console.log('get request to 8367 err');
-        })
+        //WHAT IS THIS THING HERE?
+        // axios.get('http://localhost:8367').then((data) => {
+        //   console.log('Message Recieved', data);
+        // })
+        // .catch((err) => {
+        //   console.log('get request to 8367 err');
+        // })
         
-        axios.get('http://wwww.localhost:8888/links/' + this.state.user.fbid)
+        axios.get('/links/' + this.state.user.fbid)
         .then((links) => {
           this.setState({articles: links.data[0]}, ()=>{
             this.sortArticles();

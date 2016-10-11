@@ -14,16 +14,17 @@ class SignUpContainer extends React.Component {
   }
 
   handleSubmit(e) {
+    console.log('signup submit');
     e.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
     // this.username.value = '';
     // this.password.value = '';
-    axios.post('http://localhost:8888/signup', {username: username, password: password})
+    axios.post('/signup', {username: username, password: password})
     .then((data) => {
       console.log('WHAT DO YOU GET AFTER IMMEDIATE SIGN UP?', data);
       //(do the signing in for the client);
-      axios.post('http://localhost:3010/login2', {username: data.data.fbid, password: data.data.fbname})
+      axios.post('/login2', {username: data.data.fbid, password: data.data.fbname})
         .then((data) => {
             console.log(data.data, 'data.data');
             this.context.router.push('/home');
