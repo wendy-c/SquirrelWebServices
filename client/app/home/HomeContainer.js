@@ -72,6 +72,7 @@ class HomeContainer extends React.Component {
   }
 
   handleUpdateInbox(url, owner, assignee) {
+    
     axios.put(`/links/friends/${owner}/${assignee}`, {link: url})
     .then((data) => {
       if (owner === this.state.user.fbid) {
