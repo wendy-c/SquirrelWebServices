@@ -8,7 +8,7 @@ const NavBarPresentational = (props) => {
          <img className="navbar-logo" src="./styles/img/flying-squirrel.png"/>
 
            <ul id="nav-mobile" className="right">
-             <li><a href="/">Home</a></li>
+             <li><a href="#/home">Home</a></li>
              <li><a href="#/friends">Following</a></li>
              <li><a href="/logout">Log Out</a></li>
            </ul>
