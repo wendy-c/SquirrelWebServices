@@ -14,7 +14,7 @@ class FriendArticleListContainer extends React.Component {
   componentWillMount() {
     var friendId = this.props.friend.fbid;
     console.log('am i getting friend fbid', friendId);
-    axios.get('http://localhost:8888/links/friends/' + friendId)
+    axios.get('/links/friends/' + friendId)
       .then((res) => {
         console.log('what is res in FriendArticleListContainer', res)
         this.setState({
@@ -33,7 +33,7 @@ class FriendArticleListContainer extends React.Component {
     console.log('FriendArticleListContainer', this.props.friend.links);
     var friendId = this.props.friend.fbid;
     console.log('am i getting friend fbid', friendId);
-    axios.get('http://localhost:8888/links/friends/' + friendId)
+    axios.get('/links/friends/' + friendId)
       .then((res) => {
         console.log('what is res in FriendArticleListContainer', res);
         this.setState({

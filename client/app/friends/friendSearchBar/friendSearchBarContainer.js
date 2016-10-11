@@ -29,7 +29,7 @@ class FriendSearchBarContainer extends React.Component {
   searchFriend() {
     //look for friends with matching name
     // console.log('i am in FriendSearchBarContainer', this.state.input);
-    axios.get('http://localhost:8888/search/' + this.state.input)
+    axios.get('/search/' + this.state.input)
       .then((res) => {
         console.log('am i getting res', res.data);
         this.setState({result: res.data});

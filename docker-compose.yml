@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  web:
+    image: squirrel-web-docker:3.1
+    ports:
+      - "3010:3010"
+    links: 
+      - db
+    command: npm start
+  db:
+    image: squirrel-db-docker:0.8
+    ports: 
+      - "8888:8888"
+    command: npm start
