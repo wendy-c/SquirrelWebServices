@@ -24,7 +24,7 @@ class FriendDropDown extends React.Component {
   renderListItems() {
     const test = [];
     this.props.friends.forEach((friend) => {
-      test.push({label: friend.fbname, value: friend.fbid});
+      test.push({label: friend.fbid, value: friend.fbid});
     })
     return (
       <Select

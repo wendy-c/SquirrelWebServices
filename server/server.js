@@ -9,7 +9,7 @@ var cors = require('cors');
 var request = require('request');
 var cheerio = require('cheerio');
 var APIKeys = require('./config');
-var router = require('./routes/routes');
+var routes = require('./routes/routes');
 
 //passport configuration
 var passportConfig = require('./authConfig').passportConfig;

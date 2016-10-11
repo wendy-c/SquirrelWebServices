@@ -6,7 +6,7 @@ module.exports = function(app) {
     console.log(req.body.username, req.body.password, 'yololz must be here right?');
     var options = {
       method: 'POST',
-        uri: 'http://db:8888/signup',
+        uri: 'http://localhost:8888/signup',
         body: {
             username: req.body.username,
             password: req.body.password,
@@ -28,7 +28,7 @@ module.exports = function(app) {
 
   app.get('/links/:userid', function(req, res, next){
     // console.log(req.params.userid, "what are the params");
-    rp('http://db:8888/links/' + req.params.userid)
+    rp('http://localhost:8888/links/' + req.params.userid)
     .then(function(data){
       res.send(data)
     })
@@ -38,7 +38,7 @@ module.exports = function(app) {
   });
 
   app.get('/friends/nameonly/:userid', function(req, res, next){
-    rp('http://db:8888/friends/nameonly/' + req.params.userid)
+    rp('http://localhost:8888/friends/nameonly/' + req.params.userid)
     .then(function(data){
       res.send(data)
     })
@@ -53,7 +53,7 @@ module.exports = function(app) {
     
     var options = {
       method: 'PUT',
-      uri: 'http://db:8888/links/friends/' + req.params.friendid + '/' + req.params.userid,
+      uri: 'http://localhost:8888/links/friends/' + req.params.friendid + '/' + req.params.userid,
       body: {
           link: url,
       },
@@ -71,10 +71,10 @@ module.exports = function(app) {
   });
 
   app.get('/friends/:userid', function(req, res, next){
-    console.log('goodbye damien');
+    console.log('goolocalhostye damien');
     var userid = req.params.userid;
 
-    rp('http://db:8888/friends/' + userid)
+    rp('http://localhost:8888/friends/' + userid)
     .then(function(data){
       res.send(data)
     })
@@ -89,7 +89,7 @@ module.exports = function(app) {
 
     var options = {
       method: 'PUT',
-        uri: 'http://db:8888/friends/' + userID,
+        uri: 'http://localhost:8888/friends/' + userID,
         body: {
           friend: friendID,
         },
@@ -109,7 +109,7 @@ module.exports = function(app) {
 
   app.get('/search/:friend', function(req, res, next){
     var friend = req.params.friend;
-    rp('http://db:8888/search/' + friend)
+    rp('http://localhost:8888/search/' + friend)
     .then(function(data){
       res.send(data);
     })
@@ -120,7 +120,7 @@ module.exports = function(app) {
   });
 
   app.get('/links/friends/:friendid', function(req, res, next){
-    rp('http://db:8888/links/friends/' + req.params.friendid)
+    rp('http://localhost:8888/links/friends/' + req.params.friendid)
     .then(function(data){
       res.send(data);
     })
