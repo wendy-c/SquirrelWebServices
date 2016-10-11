@@ -69,7 +69,6 @@ app.post('/getUrlInfo', function(req, res) {
     res.send(rs);   
   });
 });
-
 // //post new added articles to recommendation server
 // app.post('/rec/links/:userid', function(req, res) {
 //   // console.log('req.body in rec/links>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', req.body);

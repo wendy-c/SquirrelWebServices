@@ -6,36 +6,7 @@ const LoginTrendingPresentational = (props) => {
   var divStyle = {
     backgroundImage: 'url(' + image + ')',
   };
-
   var afterClass = props.modalIsOpen ? '' : 'after';
-  var random = Math.round(Math.random() * 10);
-
-  // var imageDiv = random % 2 === 0 ? 
-  // (<div className="landingWrapper">
-  //     <div className="shadowDepth1">
-  //       <div className="card__image border-tlr-radius">
-  //         <div style={divStyle} className='landingImage'/>
-  //       </div>
-  //     </div>
-  //     <div className={afterClass}>
-  //       <span>{props.article.title}</span>
-  //         By <a href="#">{props.article.author}</a>
-  //     </div>
-  //   </div>) 
-
-  // :
-
-  // (<div className="landingWrapper2">
-  //     <div className="shadowDepth1">
-  //       <div className="card__image border-tlr-radius">
-  //         <div style={divStyle} className='landingImage'/>
-  //       </div>
-  //     </div>
-  //     <div className={afterClass}>
-  //       <span>{props.article.title}</span>
-  //         By <a href="#">{props.article.author}</a>
-  //     </div>
-  //   </div>);
 
   return (
     <div>
@@ -47,7 +18,6 @@ const LoginTrendingPresentational = (props) => {
         </div>
         <div className={afterClass}>
           <span>{props.article.title}</span>
-            By <a href="#">{props.article.author}</a>
         </div>
       </div>
     </div>
