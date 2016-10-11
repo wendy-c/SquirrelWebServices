@@ -83,12 +83,13 @@ class LoginContainer extends React.Component {
   render() {
     console.log('what is this.state.articles in login>>>>>>', this.state.articles);
     var mappedArticles = this.state.articles.map((item, index) => {
-      return (<LoginTrendingPresentational article={item} key={index} index={index} modalIsOpen={this.state.modalIsOpen}/>);
+      if (item !== null) {
+        return (<LoginTrendingPresentational article={item} key={index} index={index} modalIsOpen={this.state.modalIsOpen}/>);
+      }
     });
 
     return (
       <div>
-
           <div onClick={this.openModal}>
             <div className="row">
               <div className="col s12 m6 parallax" className='landing-container'>
@@ -96,6 +97,40 @@ class LoginContainer extends React.Component {
               </div>
             </div>
           </div>
+          <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Get Started with Squirrel</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Save</h5>
+                <ul>
+                  <li><img/></li>
+                </ul>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Read</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                </ul>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Share</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
         <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal} onRequestClose={this.closeModal} className="npm-modal-default">
           <div className="popup">
             <div className="row container">
