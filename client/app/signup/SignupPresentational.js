@@ -1,19 +1,22 @@
-import React, { PropTypes } from 'react';
+ import React, { PropTypes } from 'react';
 
 const SignUpPresentational = (props) => {
-
+  console.log('in SignUpPresentational, what is props', props.avatar);
   //step one or step two?
-  const view = props.isFacebook ? 
+  const view = !props.isFacebook ? 
     (
       <div className="step-one">
-        <span>STEP ONE: </span>
+        <span className="signup-text">STEP ONE: </span>
         <a href="/auth/facebook" id="oauth download-button" className="btn-large waves-effect waves-light blue lighten-1">Login with Facebook</a>
       </div> 
       )
     :
     (
-      <div className="step-two">
-        <span>STEP TWO:</span>
+      <div>
+        <div className="step-two">
+          <img src={props.avatar} alt="" className="friend_article_friend_img circle responsive-img"/>
+          <span className="signup-text">WELCOME {props.displayName}</span>
+        </div>
         <form id='loginform' onSubmit={props.handleSubmit} className="col s12">
           <div className='row'>
             <div className='col s12'>

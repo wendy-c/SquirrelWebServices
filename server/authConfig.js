@@ -1,5 +1,5 @@
 var APIKeys = require('./config');
-var request = require('request');
+var request = require('request'); 
 var rp = require('request-promise');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
@@ -48,18 +48,47 @@ module.exports.passportConfig = function(passport){
     enableProof: true
   },
     function(accessToken, refreshToken, profile, done) {
-      // console.log(profile.photos[0].value, 'what is this thing?');
-      const endpointID = '/' + profile.id;
-      var apiFields = options(profile.id, profile.displayName, profile.photos[0].value, 'login');
+      
+      //   const user = {
+      //     username: profile.id,
+      //     password: profile.displayName,
+      //     avatar: profile.photos[0].value
+      //   };
 
-      rp(apiFields) //<===== server-side http request
-      .then(function (user) {
-        console.log(user, 'IS THIS THE DATA');
-        done(null, user);
-      })
-      .catch(function (err) {
-        console.log(err,'could not reach SquirrelDBService');
-      });
+      // done(null, user);
+
+      var options = {
+        method: 'POST',
+        uri: 'http://localhost:8888/signup',
+        body: {
+          username: profile.id,
+          password: profile.displayName,
+          avatar: profile.photos[0].value
+        },
+        json: true
+      };
+
+      rp(options)
+        .then((data) => {
+          done(null, data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+
+
+      // const endpointID = '/' + profile.id;
+      // var apiFields = options(profile.id, profile.displayName, profile.photos[0].value, 'login'); //<===API call to login
+
+      // rp(apiFields) //<===== server-side http request
+      // .then(function (user) {
+      //   // console.log(user, 'IS THIS THE DATA');
+      //   done(null, user);
+      // })
+      // .catch(function (err) {
+      //   console.log(err,'could not reach SquirrelDBService');
+      // });
     }
   ));
 
@@ -70,7 +99,7 @@ module.exports.passportConfig = function(passport){
 
       rp(apiFields) //<===== server-side http request
       .then(function (user) {
-          console.log(user, 'IS THIS THE DATA');
+          // console.log(user, 'IS THIS THE DATA');
           done(null, user);
       })
       .catch(function (err) {
@@ -82,6 +111,7 @@ module.exports.passportConfig = function(passport){
 /* ======================== SERIALIZE AND DESERIALIZE EACH REQUEST ================================== */
   //user ID is serialized to the session, when a request of the same ID is received it will restore the session
   passport.serializeUser(function(user, done) {
+    console.log('who is user>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', user);
     done(null, user.fbid);
   });
   //used to check if user session is actuallly a verified user in database! 

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import SignUpPresentational from './SignupPresentational';
-import axios from 'axios';
+import SignUpPresentational from './SignupPresentational'; 
+import axios from 'axios'; 
 
 
 class SignUpContainer extends React.Component {
@@ -11,22 +11,27 @@ class SignUpContainer extends React.Component {
       password: '',
       confirmPassword: '',
       message: 'please choose a username and password',
-      isFacebook: true
+      isFacebook: false,
+      fbid: '',
+      displayName: '',
+      avatar: ''
     };
     this.validateFacebook = this.validateFacebook.bind(this);
   }
 
-  componentWillUpdate() {
+  componentWillMount() {
+    console.log('i am in SignUpContainer componentWillUpdate');
     this.validateFacebook();
   }
  
   handleSubmit(e) {
-    console.log('signup submit');
+    console.log('signup submit>>>>>>>>>>>>>>>>>', this.state);
     e.preventDefault();
-    const username = this.state.username;
+    const username = this.state.username; 
     const password = this.state.password;
+    const fbid = this.state.fbid;
     if (this.state.password === this.state.confirmPassword) {
-      axios.post('/signup', {username: username, password: password})
+      axios.post('/signup2', {username: username, password: password, fbid: fbid})
       .then((data) => {
         console.log('WHAT DO YOU GET AFTER IMMEDIATE SIGN UP?', data);
         //(do the signing in for the client);
@@ -60,29 +65,28 @@ class SignUpContainer extends React.Component {
     this.setState({confirmPassword: e.target.value});
   }
 
-  validateFacebook(nextState, replace, callback) {
+  validateFacebook() {
     axios.get('/checkAuth')
     .then((user) => {
-      if (user.data === '') {
-        callback();
-      } else {
-        console.log('in validateFacebook, what is user??????', user);
-        this.setState({isFacebook: true});
-
-        //if user is validated, get user avatar 
-        callback();
-      }
+      if (user.data !== '') {
+        console.log('in validateFacebook, what is user??????', user.data);
+        this.setState({
+          isFacebook: true,
+          fbid: user.data.fbid,
+          displayName: user.data.fbname,
+          avatar: user.data.avatar,
+        });  
+      } 
     })
     .catch((err) => {
       console.log(err);
-      callback(err);
     });
   }
 
   render() {
     console.log(this.state.message);
     return (
-    <SignUpPresentational message={this.state.message} getRefUsername={this.getRefUsername.bind(this)} getRefPassword={this.getRefPassword.bind(this)} getRefConfirmPassword={this.getRefConfirmPassword.bind(this)} handleSubmit={this.handleSubmit.bind(this)} isFacebook={this.state.isFacebook}/>
+    <SignUpPresentational fbid={this.state.fbid} avatar={this.state.avatar} displayName={this.state.displayName} message={this.state.message} getRefUsername={this.getRefUsername.bind(this)} getRefPassword={this.getRefPassword.bind(this)} getRefConfirmPassword={this.getRefConfirmPassword.bind(this)} handleSubmit={this.handleSubmit.bind(this)} isFacebook={this.state.isFacebook}/>
     );
   }
 }

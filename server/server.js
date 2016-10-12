@@ -38,20 +38,49 @@ passportConfig(passport);
 //API ROUTES 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', {
+    successRedirect: 'http://localhost:3010/#/signup',
+    failureRedirect: 'http://localhost:3010/#/signup'
+  }));
+
+//update user info to squirrel username and password
+app.post('/signup2', function(req, res) {
+
+  console.log('port 3010, /signup2>>>>>>>>>>>>>>>>>>', req.body);
+  var options = {
+    method: 'POST',
+    uri: 'http://localhost:8888/signup2',
+    body: {
+      fbid: req.body.fbid,
+      username: req.body.username,
+      password: req.body.password
+    },
+    json: true
+  };
+
+  rp(options)
+    .then(function(data) {
+      res.send(data);
+    })
+    .catch(function(err) {
+      res.send(err);
+    });
+});
+
 app.post('/login2', passport.authenticate('local', { successRedirect: '/#/home',
                                                      failureRedirect: '/' }));
 
 // app.post('/signup', passport.authenticate('local', { successRedirect: '/#/home',
 //                                                      failureRedirect: '/signup' }));
 //check to see req session?
-app.get('/checkAuth', function(req, res){
+app.get('/checkAuth', function(req, res) {
   res.send(req.user);
 });
 
 //////////////////////////////////////////////////////////////////////////
 //delete when query to db is established
 app.get('/searchFriend', function(req, res) {
-  console.log('got to the back for /searchFriend>>>>>>>>>');
   res.send([{
     avatar: "https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/13592162_10154405816284363_2728511714196473_n.jpg?oh=56c39b420052da84d8088c01941a872d&oe=58746F98",
     createdAt: "2016-10-01T17:58:25.000Z",
@@ -80,7 +109,7 @@ app.post('/rec/link/:userid', function(req, res) {
     method: 'POST',
     uri: 'http://localhost:3121/rec/link/' + req.params.userid,
     body: {
-      link: req.body.link
+      url: req.body.link
     },
     json: true
   };
@@ -105,7 +134,7 @@ app.get('/rec/:userid', function(req, res) {
 
   rp(options)
     .then(function(parsedBody) {
-      res.send(parsedBody);
+      res.send(parsedBody.data);
     })
     .catch(function(err) {
       res.send(err);
@@ -121,11 +150,6 @@ app.post('/getRecInfo', function(req, res) {
   });
 });
 
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {
-    successRedirect: 'http://localhost:3010/#/',
-    failureRedirect: 'http://localhost:3010/'
-  }));
 
 app.get('/auth/twitter', passport.authenticate('twitter'));
 
