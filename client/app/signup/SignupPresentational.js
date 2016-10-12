@@ -1,57 +1,7 @@
  import React, { PropTypes } from 'react';
 
 const SignUpPresentational = (props) => {
-  console.log('in SignUpPresentational, what is props', props.avatar);
-  //step one or step two?
-  const view = !props.isFacebook ? 
-    (
-      <div className="step-one">
-        <span className="signup-text">STEP ONE: </span>
-        <a href="/auth/facebook" id="oauth download-button" className="btn-large waves-effect waves-light blue lighten-1">Login with Facebook</a>
-      </div> 
-      )
-    :
-    (
-      <div>
-        <div className="step-two">
-          <img src={props.avatar} alt="" className="friend_article_friend_img circle responsive-img"/>
-          <span className="signup-text">WELCOME {props.displayName}</span>
-        </div>
-        <form id='loginform' onSubmit={props.handleSubmit} className="col s12">
-          <div className='row'>
-            <div className='col s12'>
-            </div>
-          </div>
-
-          <div className='row'>
-            <div className='input-field col s12'>
-              <input onChange={props.getRefUsername} className='validate' type='text' name='text' id='text' />
-              <label htmlFor='text'>Create a username</label>
-            </div>
-          </div>
-
-          <div className='row'>
-            <div className='input-field col s12'>
-              <input onChange={props.getRefPassword} className='validate' type='password' name='password' id='password' />
-              <label htmlFor='password'>Create a password</label>
-              <br/>
-            </div>
-            <div className='input-field col s12'>
-              <input onChange={props.getRefConfirmPassword} className='validate' type='password' name='confirmPassword' id='password' />
-              <label htmlFor='password'>Confirm password</label>
-              <br/>
-            </div>
-          </div>
-          <center>
-            <div className='row'>
-              <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect teal lighten-2'>SIGNUP</button>
-              <br/>
-              <p style={{fontSize: '12px'}} className='grey-text'>{props.message}</p>
-            </div>
-          </center>
-        </form>
-        </div>
-      );
+  console.log('in SignUpPresentational, what is props', props);
 
   return (
     <div className='signupbox'>
@@ -65,9 +15,41 @@ const SignUpPresentational = (props) => {
             <div className="container">
               <div className="z-depth-1 grey lighten-4 row" style={{display: 'inline-block', padding: '32px 48px 0px 48px', border: '1px solid #EEE'}}>
 
-              {view}
+                <form id='loginform' onSubmit={props.handleSubmit} className="col s12">
+                  <div className='row'>
+                    <div className='col s12'>
+                    </div>
+                  </div>
 
+                  <div className='row'>
+                    <div className='input-field col s12'>
+                      <input onChange={props.getRefUsername} className='validate' type='text' name='text' id='text' />
+                      <label htmlFor='text'>Create a username</label>
+                    </div>
+                  </div>
+
+                  <div className='row'>
+                    <div className='input-field col s12'>
+                      <input onChange={props.getRefPassword} className='validate' type='password' name='password' id='password' />
+                      <label htmlFor='password'>Create a password</label>
+                      <br/>
+                    </div>
+                    <div className='input-field col s12'>
+                      <input onChange={props.getRefConfirmPassword} className='validate' type='password' name='confirmPassword' id='password' />
+                      <label htmlFor='password'>Confirm password</label>
+                      <br/>
+                    </div>
+                  </div>
+                  <center>
+                    <div className='row'>
+                      <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect teal lighten-2'>NEXT</button>
+                      <br/>
+                      <p style={{fontSize: '12px'}} className='grey-text'>{props.message}</p>
+                    </div>
+                  </center>
+                </form>
               </div>
+
             </div>
             <a href="#/">Back to login</a>
           </center>

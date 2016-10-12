@@ -83,10 +83,14 @@ class SignUpContainer extends React.Component {
     });
   }
 
+  addFace() {
+    this.setState({isFacebook: true});
+  }
+
   render() {
     console.log(this.state.message);
     return (
-    <SignUpPresentational fbid={this.state.fbid} avatar={this.state.avatar} displayName={this.state.displayName} message={this.state.message} getRefUsername={this.getRefUsername.bind(this)} getRefPassword={this.getRefPassword.bind(this)} getRefConfirmPassword={this.getRefConfirmPassword.bind(this)} handleSubmit={this.handleSubmit.bind(this)} isFacebook={this.state.isFacebook}/>
+    <SignUpPresentational fbid={this.state.fbid} avatar={this.state.avatar} displayName={this.state.displayName} message={this.state.message} getRefUsername={this.getRefUsername.bind(this)} getRefPassword={this.getRefPassword.bind(this)} getRefConfirmPassword={this.getRefConfirmPassword.bind(this)} handleSubmit={this.handleSubmit.bind(this)} isFacebook={this.state.isFacebook} addFace={this.addFace.bind(this)}/>
     );
   }
 }

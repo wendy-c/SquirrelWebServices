@@ -48,18 +48,10 @@ module.exports.passportConfig = function(passport){
     enableProof: true
   },
     function(accessToken, refreshToken, profile, done) {
-      
-      //   const user = {
-      //     username: profile.id,
-      //     password: profile.displayName,
-      //     avatar: profile.photos[0].value
-      //   };
-
-      // done(null, user);
 
       var options = {
         method: 'POST',
-        uri: 'http://localhost:8888/signup',
+        uri: 'http://localhost:3333/signup',
         body: {
           username: profile.id,
           password: profile.displayName,
