@@ -1,6 +1,6 @@
  import React, { PropTypes } from 'react';
 
-const SignUpPresentational = (props) => {
+const SignupPresentational = (props) => {
   console.log('in SignUpPresentational, what is props', props);
 
   return (
@@ -15,7 +15,7 @@ const SignUpPresentational = (props) => {
             <div className="container">
               <div className="z-depth-1 grey lighten-4 row" style={{display: 'inline-block', padding: '32px 48px 0px 48px', border: '1px solid #EEE'}}>
 
-                <form id='loginform' onSubmit={props.handleSubmit} className="col s12">
+                <form id='loginform' onSubmit={props.nextToFbView} className="col s12">
                   <div className='row'>
                     <div className='col s12'>
                     </div>
@@ -42,7 +42,7 @@ const SignUpPresentational = (props) => {
                   </div>
                   <center>
                     <div className='row'>
-                      <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect teal lighten-2'>NEXT</button>
+                      <button name='btn_login' className='col s12 btn btn-large waves-effect teal lighten-2'>NEXT</button>
                       <br/>
                       <p style={{fontSize: '12px'}} className='grey-text'>{props.message}</p>
                     </div>

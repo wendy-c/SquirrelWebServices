@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
-import SignUpPresentational from './SignupPresentational'; 
+import SignupPresentational from './SignupPresentational'; 
+import SignupWithFacebookPresentational from './SignupWithFacebookPresentational'; 
+import SignupConfirmPresentational from './SignupWithConfirmPresentational'; 
 import axios from 'axios'; 
 
 
@@ -11,12 +13,18 @@ class SignUpContainer extends React.Component {
       password: '',
       confirmPassword: '',
       message: 'please choose a username and password',
-      isFacebook: false,
+      fbView: false,
+      confirmView: false,
       fbid: '',
       displayName: '',
       avatar: ''
     };
+    this.getRefUsername = this.getRefUsername.bind(this);
+    this.getRefPassword = this.getRefPassword.bind(this);
+    this.getRefConfirmPassword = this.getRefConfirmPassword.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.validateFacebook = this.validateFacebook.bind(this);
+    this.nextToFbView = this.nextToFbView.bind(this);
   }
 
   componentWillMount() {
@@ -29,9 +37,9 @@ class SignUpContainer extends React.Component {
     e.preventDefault();
     const username = this.state.username; 
     const password = this.state.password;
-    const fbid = this.state.fbid;
+    const avatar = this.state.avatar;
     if (this.state.password === this.state.confirmPassword) {
-      axios.post('/signup2', {username: username, password: password, fbid: fbid})
+      axios.post('/signup', {username: username, password: password, avatar: avatar})
       .then((data) => {
         console.log('WHAT DO YOU GET AFTER IMMEDIATE SIGN UP?', data);
         //(do the signing in for the client);
@@ -65,32 +73,51 @@ class SignUpContainer extends React.Component {
     this.setState({confirmPassword: e.target.value});
   }
 
+  nextToFbView() {
+    console.log('in nextToFbView');
+    if (this.state.password === this.state.confirmPassword) {
+      this.setState({
+        fbView: true,
+        confirmView: false
+      });
+    } else {
+      this.setState({message: 'Password does not match'});
+    }
+  }
+
   validateFacebook() {
+    console.log('in validateFacebook');
     axios.get('/checkAuth')
     .then((user) => {
       if (user.data !== '') {
         console.log('in validateFacebook, what is user??????', user.data);
         this.setState({
-          isFacebook: true,
           fbid: user.data.fbid,
           displayName: user.data.fbname,
           avatar: user.data.avatar,
+          fbView: true,
+          confirmView: true
         });  
       } 
     })
     .catch((err) => {
-      console.log(err);
+      console.log('user is not in session', err);
+      this.setState({
+        fbView: true,
+        confirmView:false
+      });
     });
   }
 
-  addFace() {
-    this.setState({isFacebook: true});
-  }
-
   render() {
-    console.log(this.state.message);
     return (
-    <SignUpPresentational fbid={this.state.fbid} avatar={this.state.avatar} displayName={this.state.displayName} message={this.state.message} getRefUsername={this.getRefUsername.bind(this)} getRefPassword={this.getRefPassword.bind(this)} getRefConfirmPassword={this.getRefConfirmPassword.bind(this)} handleSubmit={this.handleSubmit.bind(this)} isFacebook={this.state.isFacebook} addFace={this.addFace.bind(this)}/>
+      <div>
+      {this.state.fbView ?
+        (<SignupWithFacebookPresentational confirmView={this.state.confirmView} username={this.state.username} displayName={this.state.displayName} avatar={this.state.avatar} validateFacebook={this.state.validateFacebook} handleSubmit={this.handleSubmit}/>)
+        :
+        (<SignupPresentational message={this.state.message} getRefUsername={this.getRefUsername} getRefPassword={this.getRefPassword} getRefConfirmPassword={this.getRefConfirmPassword} nextToFbView={this.nextToFbView}/>)
+      }
+      </div>
     );
   }
 }
