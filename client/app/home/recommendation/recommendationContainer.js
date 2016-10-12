@@ -22,13 +22,11 @@ class RecommendationContainer extends React.Component {
   }
 
   handleLeft() {
-    console.log('even here???');
     if (this.state.leftScroll.length !== 0) {
       var right = this.state.rightScroll;
       var left = this.state.leftScroll;
       var shift = left.pop();
       right.unshift(shift);
-      console.log("handleLeft",right, left);
       this.setState({
         rightScroll: right,
         leftScroll: left,
@@ -37,7 +35,6 @@ class RecommendationContainer extends React.Component {
   }
 
   handleRight() {
-
     if (this.state.rightScroll.length > Math.floor(screen.width * 0.8 / 200)) {
       var right = this.state.rightScroll;
       var left = this.state.leftScroll;
@@ -52,7 +49,6 @@ class RecommendationContainer extends React.Component {
 
   render() {
     var recArray = [];
-    console.log('i am in RecommendationContainer', this.state.rightScroll);
     for (var i = 0; i < this.state.rightScroll.length; i++) {
       recArray.push(<RecommendationPresentational key={i} index={this.state.rightScroll[i]}/>);
     }

@@ -10,20 +10,20 @@ class InputBarContainer extends React.Component {
       owner: '',
       assignee: '',
       userId: '',
-    }
+    };
   }
-  componentWillReceiveProps(props){
-    if(props.userId && props.userId.fbid !== this.state.userId) { 
-     this.setState({
-      userId: props.userId.fbid,
-      assignee: props.userId.fbid,
-      owner: props.userId.fbid,
-     })
+  componentWillReceiveProps(props) {
+    if (props.userId && props.userId.fbid !== this.state.userId) { 
+      this.setState({
+        userId: props.userId.fbid,
+        assignee: props.userId.fbid,
+        owner: props.userId.fbid,
+      });
     }
   }
 
-  shouldComponentUpdate(props, state){
-    console.log(state, 'what\'s in next state' )
+  shouldComponentUpdate(props, state) {
+    console.log(state, 'what\'s in next state' );
     return true;
   }
 
@@ -49,14 +49,14 @@ class InputBarContainer extends React.Component {
     // })
   }
 
-  setOwner(owner){
+  setOwner(owner) {
     this.setState({owner: owner});
   }
 
   render() {
     return (
       <InputBarPresentational friends={this.props.friends} setOwner={this.setOwner.bind(this)} onSubmit={this.handleSubmit.bind(this)} onChange={this.handleInputChange.bind(this)}/>
-    )
+    );
   }
 }
 

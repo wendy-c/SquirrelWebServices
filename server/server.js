@@ -10,6 +10,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var APIKeys = require('./config');
 var routes = require('./routes/routes');
+var rp = require('request-promise');
 
 //passport configuration
 var passportConfig = require('./authConfig').passportConfig;
@@ -63,6 +64,7 @@ app.get('/searchFriend', function(req, res) {
 
 //crawl article
 
+//////////get info for user articles//////////
 app.post('/getUrlInfo', function(req, res) {
   //make call to readibility
   request('https://readability.com/api/content/v1/parser?url=' + req.body.url + '/&token=ea069fd819bb249c3f5a3b38bbd39b3622ab1ea9', function(req, rs) {
@@ -70,13 +72,54 @@ app.post('/getUrlInfo', function(req, res) {
     res.send(rs);   
   });
 });
-// //post new added articles to recommendation server
-// app.post('/rec/links/:userid', function(req, res) {
-//   // console.log('req.body in rec/links>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', req.body);
-//   request.post('http://localhost:3121/rec/links/' + req.params.userid, {link: req.body.link}, function(req, res) {
-//     res.send('sent!');
-//   });
-// });
+
+//////////post new added articles to recommendation server//////////
+app.post('/rec/link/:userid', function(req, res) {
+  var url = req.body.link;
+  var options = {
+    method: 'POST',
+    uri: 'http://localhost:3121/rec/link/' + req.params.userid,
+    body: {
+      link: req.body.link
+    },
+    json: true
+  };
+
+  rp(options)
+    .then(function(parsedBody) {
+      res.send();
+    })
+    .catch(function(err) {
+      res.send(err);
+    });
+
+});
+
+//////////Get recommended articles//////////
+app.get('/rec/:userid', function(req, res) {
+  var options = {
+    method: 'GET',
+    uri: 'http://localhost:3121/rec/' + req.params.userid,
+    json: true
+  };
+
+  rp(options)
+    .then(function(parsedBody) {
+      res.send(parsedBody);
+    })
+    .catch(function(err) {
+      res.send(err);
+    });
+
+});
+
+//////////Get info for recommendation views//////////
+app.post('/getRecInfo', function(req, res) {
+  //make call to readibility
+  request('https://readability.com/api/content/v1/parser?url=' + req.body.url + '/&token=ea069fd819bb249c3f5a3b38bbd39b3622ab1ea9', function(req, rs) {
+    res.send(rs);   
+  });
+});
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
@@ -88,8 +131,8 @@ app.get('/auth/twitter', passport.authenticate('twitter'));
 
 app.get('/auth/twitter/callback',
   passport.authenticate('twitter', {
-    successRedirect: '/',
-    failureRedirect: '/login'
+    successRedirect: '/signup',
+    failureRedirect: '/signup'
   }));
 
 app.get('/logout', function(req, res) {

@@ -45,16 +45,17 @@ module.exports.passportConfig = function(passport){
     clientSecret: APIKeys.keys.facebook.secret,
     callbackURL: 'http://localhost:3010/auth/facebook/callback',
     profileFields: FBprofileFields,
+    enableProof: true
   },
     function(accessToken, refreshToken, profile, done) {
-      console.log(profile.photos[0].value, 'what is this thing?');
+      // console.log(profile.photos[0].value, 'what is this thing?');
       const endpointID = '/' + profile.id;
       var apiFields = options(profile.id, profile.displayName, profile.photos[0].value, 'login');
 
       rp(apiFields) //<===== server-side http request
       .then(function (user) {
-          console.log(user, 'IS THIS THE DATA');
-          done(null, user);
+        console.log(user, 'IS THIS THE DATA');
+        done(null, user);
       })
       .catch(function (err) {
         console.log(err,'could not reach SquirrelDBService');

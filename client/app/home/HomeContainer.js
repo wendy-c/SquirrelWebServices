@@ -16,6 +16,7 @@ class HomeContainer extends React.Component {
       userArticles: [],
       userFriendsList: [{fbid: '0', fbname: 'Friends'}],
       articlesFromFriends: [],
+      recommended: []
     };
   }
 
@@ -39,13 +40,21 @@ class HomeContainer extends React.Component {
       updatedFriends[0].fbid = this.state.user.fbid;
       updatedFriends = updatedFriends.concat(friends.data);
       this.setState({userFriendsList: updatedFriends});
+      return axios.get('/rec/' + this.state.user.fbid);
     })  
+    .then((recLinks) => {
+      console.log('recommended links', recLinks);
+      this.setState({recommended: recLinks});
+    })
     .catch((err)=> {
       console.log(err);
     });
+
+    //send to readibility using /getRecInfo
+
   }
 
-  shouldComponentUpdate(state, props){
+  shouldComponentUpdate(state, props) {
     // console.log(state, props);
     return true;
   }
@@ -72,6 +81,16 @@ class HomeContainer extends React.Component {
   }
 
   handleUpdateInbox(url, owner, assignee) {
+
+    //post link to recommender
+    if (owner === assignee) {
+      axios.post(`/rec/link/${owner}`, {link: url})
+        .then((data) => {
+          console.log('sent to recommender');
+        }).catch((err) => {
+          console.log(err);
+        });    
+    }
     
     axios.put(`/links/friends/${owner}/${assignee}`, {link: url})
     .then((data) => {
