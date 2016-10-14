@@ -14,14 +14,6 @@ class RecommendationContainer extends React.Component {
     // this.getRecommended = this.getRecommended.bind(this);
   }
 
-  componentWillMount() {
-    //set articles state
-    console.log('in componentWillMount', this.props);
-
-    // this.setState({
-    //   rightScroll: [1,2,3,4,5,6,7,8,9,10]
-    // });
-  }
 
   componentWillReceiveProps(nextProps) {
     console.log('componentWillReceiveProps', this.props, nextProps);

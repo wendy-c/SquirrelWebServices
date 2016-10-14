@@ -6,11 +6,12 @@ const RecommendationPresentational = (props) => {
   const divStyle = {
     backgroundImage: `url(${image})`,
   };
+  const title = props.article.title.slice(0, 55) + '...';
   return (
 
       <div className="recbox">
           <div style={divStyle} id="rec" className="recboxImg"/>
-          <span className="recboxTitle">{props.article.title}</span>
+          <p className="recboxTitle">{title}</p>
       </div>
 
     );
