@@ -16,6 +16,7 @@ class HomeContainer extends React.Component {
       userArticles: [],
       userFriendsList: [{fbid: '0', fbname: 'Friends'}],
       articlesFromFriends: [],
+      recArticles: []
     };
   }
 
@@ -43,7 +44,7 @@ class HomeContainer extends React.Component {
     })  
     .then((recArticles) => {
       console.log('in HomeContainer get recommendation', recArticles);
-      this.setState({recArticles: recArticles});
+      this.setState({recArticles: recArticles.data});
     })
     .catch((err)=> {
       console.log('its a sad day D=', err);
@@ -115,7 +116,7 @@ class HomeContainer extends React.Component {
   }
 
   render() {
-    // console.log('in HomeContainer',this.state.user)
+    console.log('in HomeContainer',this.state.recArticles)
     return (
     <div style={{'height': '100%', 'width': '100%'}}>
       <HomePresentational >

@@ -76,17 +76,28 @@ app.get('/rec/:userid', function(req, res) {
   rp(options)
     .then(function(articles) {
       console.log('in /rec/:userid>>>>>>>>>>>>>>>>>>>>>>>', articles);
-      var articleInfo = [];
-      // articles.forEach((item) => {
-      //   request('https://readability.com/api/content/v1/parser?url=' + item + '/&token=ea069fd819bb249c3f5a3b38bbd39b3622ab1ea9', function(req, rs) {
-      //     // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>rs', rs);
-      //     articleInfo.push(rs);
-      //   });
-      // });
-      // CONSOLE.LOG('what is articleInfo>>>>>>>>>>>>>>>>>>>>', articleInfo)
-      res.send(articleInfo);  
-
-    })
+     
+      var promiseArray = articles.map((item, index) => {
+        return new Promise((resolve, reject) => {
+          request('https://readability.com/api/content/v1/parser?url=' + item + '/&token=ea069fd819bb249c3f5a3b38bbd39b3622ab1ea9', function(req, rs) {
+            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>rs from readability', rs.body);
+            resolve(JSON.parse(rs.body));
+            // return rs.body;
+          });
+        });
+      });
+        console.log('GOT HERE');
+        Promise.all(promiseArray)
+        .then((data) => {
+          console.log('in promise.all>>>>>>>>>>>>>>>>>>>>>', data);
+          promiseArray.forEach(function(promise){
+            promise.then(function(data){
+              console.log('data is ',data);
+            });
+          });
+          res.send(data);
+        });
+      })
     .catch(function(err) {
       res.send(err);
     });

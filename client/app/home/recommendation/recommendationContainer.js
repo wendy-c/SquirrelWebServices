@@ -11,7 +11,7 @@ class RecommendationContainer extends React.Component {
     };
     this.handleLeft = this.handleLeft.bind(this);
     this.handleRight = this.handleRight.bind(this);
-    this.getRecommended = this.getRecommended.bind(this);
+    // this.getRecommended = this.getRecommended.bind(this);
   }
 
   componentWillMount() {
@@ -23,15 +23,8 @@ class RecommendationContainer extends React.Component {
     // });
   }
 
-  getRecommended() {
-    axios.get('/rec/' + this.props.username)
-      .then((data) => {
-        console.log('recommended articles>>>>>>>', data);
-      })
-      .catch((err) => {
-
-      });
-    
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps', this.props, nextProps);
   }
 
   handleLeft() {
@@ -64,13 +57,13 @@ class RecommendationContainer extends React.Component {
   }
 
   render() {
-    var recArray = [];
-    console.log('i am in RecommendationContainer', this.state.rightScroll);
-    for (var i = 0; i < this.state.rightScroll.length; i++) {
-      recArray.push(<RecommendationPresentational key={i} index={this.state.rightScroll[i]}/>);
-    }
-    var mappedArticles = this.props.recArticles.map((item) => {
-      return (<RecommendationPresentational article={item}/>);
+    // var recArray = [];
+    console.log('i am in RecommendationContainer', this.props.recArticles);
+    // for (var i = 0; i < this.state.rightScroll.length; i++) {
+    //   recArray.push(<RecommendationPresentational key={i} index={this.state.rightScroll[i]}/>);
+    // }
+    var mappedArticles = this.props.recArticles.map((item, index) => {
+      return (<RecommendationPresentational article={item} key={index}/>);
     });
     return (
       <div className="slideContainer">
@@ -78,7 +71,7 @@ class RecommendationContainer extends React.Component {
           <i className="material-icons md-48 orange600">keyboard_arrow_left</i>
         </div>
         <div className="recContainer">
-          {recArray}
+          {mappedArticles}
         </div>
         <div className="arrowContainer" onClick={this.handleRight}>
           <i className="material-icons md-48 orange600">keyboard_arrow_right</i>
