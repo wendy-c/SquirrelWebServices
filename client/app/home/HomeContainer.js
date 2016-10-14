@@ -39,9 +39,14 @@ class HomeContainer extends React.Component {
       updatedFriends[0].fbid = this.state.user.fbid;
       updatedFriends = updatedFriends.concat(friends.data);
       this.setState({userFriendsList: updatedFriends});
+      return axios.get('/rec/' + this.state.user.fbid);
     })  
+    .then((recArticles) => {
+      console.log('in HomeContainer get recommendation', recArticles);
+      this.setState({recArticles: recArticles});
+    })
     .catch((err)=> {
-      console.log(err);
+      console.log('its a sad day D=', err);
     });
   }
 
@@ -51,7 +56,6 @@ class HomeContainer extends React.Component {
   }
 
   sortArticles() {
-    console.log(this.state.articles, 'testing this once');
 
     const userArticles = this.state.articles.filter((link) => {
         return link.assignee === this.state.user.fbid;
@@ -72,6 +76,15 @@ class HomeContainer extends React.Component {
   }
 
   handleUpdateInbox(url, owner, assignee) {
+
+    if (owner === assignee) {
+      axios.post(`/rec/${owner}`, {link: url})
+        .then((data) => {
+          console.log('sent to recommender');
+        }).catch((err) => {
+          console.log(err);
+        });    
+    }
     
     axios.put(`/links/friends/${owner}/${assignee}`, {link: url})
     .then((data) => {
@@ -102,12 +115,13 @@ class HomeContainer extends React.Component {
   }
 
   render() {
+    // console.log('in HomeContainer',this.state.user)
     return (
     <div style={{'height': '100%', 'width': '100%'}}>
       <HomePresentational >
         <InputBarContainer friends={this.state.userFriendsList} handleUpdateInbox={this.handleUpdateInbox.bind(this)} userId={this.state.user}/>
         <div className="col s12">
-          <RecommendationContainer/>
+          <RecommendationContainer username={this.state.user.fbid} recArticles={this.state.recArticles}/>
         </div>
         <div className='row inboxmain'>
           <div className='col s8 grey lighten-5'>

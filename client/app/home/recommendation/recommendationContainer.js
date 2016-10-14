@@ -11,14 +11,27 @@ class RecommendationContainer extends React.Component {
     };
     this.handleLeft = this.handleLeft.bind(this);
     this.handleRight = this.handleRight.bind(this);
+    this.getRecommended = this.getRecommended.bind(this);
   }
 
   componentWillMount() {
     //set articles state
+    console.log('in componentWillMount', this.props);
 
-    this.setState({
-      rightScroll: [1,2,3,4,5,6,7,8,9,10]
-    });
+    // this.setState({
+    //   rightScroll: [1,2,3,4,5,6,7,8,9,10]
+    // });
+  }
+
+  getRecommended() {
+    axios.get('/rec/' + this.props.username)
+      .then((data) => {
+        console.log('recommended articles>>>>>>>', data);
+      })
+      .catch((err) => {
+
+      });
+    
   }
 
   handleLeft() {
@@ -56,6 +69,9 @@ class RecommendationContainer extends React.Component {
     for (var i = 0; i < this.state.rightScroll.length; i++) {
       recArray.push(<RecommendationPresentational key={i} index={this.state.rightScroll[i]}/>);
     }
+    var mappedArticles = this.props.recArticles.map((item) => {
+      return (<RecommendationPresentational article={item}/>);
+    });
     return (
       <div className="slideContainer">
         <div className="arrowContainer" onClick={this.handleLeft}>
