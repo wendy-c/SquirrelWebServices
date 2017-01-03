@@ -28,14 +28,12 @@ class HomeContainer extends React.Component {
       return axios.get('/links/' + user.data.fbid);
     })
     .then((links) => {
-      console.log(links, 'links links links');
       this.setState({articles: links.data[0]}, ()=>{
         this.sortArticles();
       });
       return axios.get('/friends/nameonly/' + this.state.user.fbid);
     })
     .then((friends) => {
-      console.log(friends.data, 'friends.data');
       var updatedFriends = this.state.userFriendsList.slice();
       updatedFriends[0].fbid = this.state.user.fbid;
       updatedFriends = updatedFriends.concat(friends.data);
@@ -43,7 +41,6 @@ class HomeContainer extends React.Component {
       return axios.get('/rec/' + this.state.user.fbid);
     })  
     .then((recArticles) => {
-      console.log('in HomeContainer get recommendation', recArticles);
       this.setState({recArticles: recArticles.data});
     })
     .catch((err)=> {
@@ -51,7 +48,7 @@ class HomeContainer extends React.Component {
     });
   }
 
-  shouldComponentUpdate(state, props){
+  shouldComponentUpdate(state, props) {
     // console.log(state, props);
     return true;
   }
@@ -90,8 +87,8 @@ class HomeContainer extends React.Component {
     axios.put(`/links/friends/${owner}/${assignee}`, {link: url})
     .then((data) => {
       if (owner === this.state.user.fbid) {
-        console.log('updating yolo');
-        //WHAT IS THIS THING HERE?
+        
+        //WHAT IS THIS THING HERE? 
         // axios.get('http://localhost:8367').then((data) => {
         //   console.log('Message Recieved', data);
         // })
@@ -116,7 +113,7 @@ class HomeContainer extends React.Component {
   }
 
   render() {
-    console.log('in HomeContainer',this.state.recArticles)
+    
     return (
     <div style={{'height': '100%', 'width': '100%'}}>
       <HomePresentational >

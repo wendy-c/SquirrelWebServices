@@ -15,9 +15,7 @@ class NavBarContainer extends React.Component {
   }
 
   // in the future this needs to be deleted and the redux state tree should update once only on log out and log in.
-  componentDidMount(){
-
-    console.log('what is the end point? ', this.props);
+  componentDidMount() {
 
     axios.get('/checkAuth')
     .then((user) => {

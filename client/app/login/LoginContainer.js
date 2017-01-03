@@ -25,8 +25,7 @@ class LoginContainer extends React.Component {
     e.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
-    // this.username.value = '';
-    // this.password.value = '';
+
     axios.post('http://localhost:3010/login2', {username: username, password: password})
     .then((data) => {
       console.log(data.data, 'data.data');
@@ -47,7 +46,7 @@ class LoginContainer extends React.Component {
   }
   getLandingArticles() {
     //get most recent 20 articles from redis
-    console.log('in getLandingArticles over!');
+    
     axios.get('http://localhost:3333/getMostRecent')
       .then((res) => {
         this.setState({
@@ -67,7 +66,7 @@ class LoginContainer extends React.Component {
     this.setState({modalIsOpen: false});
   }
   render() {
-    console.log('what is this.state.articles in login>>>>>>', this.state.articles);
+    
     var mappedArticles = this.state.articles.map((item, index) => {
       if (item !== null) {
         return (<LoginTrendingPresentational article={item} key={index} index={index} modalIsOpen={this.state.modalIsOpen}/>);

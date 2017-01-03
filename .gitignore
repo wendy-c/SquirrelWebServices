@@ -4,3 +4,5 @@ client/public/bundle.js
 client/public/bundle.js.map
 .DS_store
 /public
+/client/articles.js
+/client/articles.json

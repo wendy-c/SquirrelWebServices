@@ -53,12 +53,12 @@ class FriendContainer extends React.Component {
       selected: friend,
       searchView: false
     });
-    // console.log('switch selected friend>>>>>>> ', this.state.selected);
+    
   }
 
   updateToSearchResult(result) {
     //getting result
-    console.log('I am in updateToSearchResult', result);
+    
     this.setState({
       friendSearchResult: result,
       searchView: true
@@ -69,7 +69,7 @@ class FriendContainer extends React.Component {
   addFriend(friend) {
     axios.put('/friends/' + this.state.user.fbid, {friend: friend.fbid})
       .then((res) => {
-        console.log('you have successfully added this person to the stalking list');
+        
         //re-render friend's list with new person
         var newfriend = this.state.friends.slice();
         newfriend.push(friend);
@@ -104,7 +104,7 @@ class FriendContainer extends React.Component {
   }
 
   render() {
-    console.log('i am in friendContainer, who are my friends >>>>>>>', this.state.selected);
+    
     return (
       <div style={{'height': '100%', 'width': '100%'}}>
       <FriendPresentational>
